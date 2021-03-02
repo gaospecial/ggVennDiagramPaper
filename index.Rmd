@@ -10,12 +10,28 @@ link-citations: yes
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+Sys.setenv(LANGUAGE = "en") # 显示英文报错信息
+```
+
 # Prerequisites
+
+## List of packages
+
+- `VennDiagram`
+- `colorfulVennPlot`
+- `venn`
+- `eulerr`
+- `venneuler`
+- `gplots`
+- `ggVennDiagram`
 
 You need to install these packages.
 
 ```{r}
-cran_packages <- c("VennDiagram","colorfulVennPlot","gplots","venn","eulerr","venneuler")
+cran_packages <- c("VennDiagram","colorfulVennPlot","gplots","venn",
+                   "eulerr","venneuler","ggVennDiagram")
 xfun::pkg_load2(cran_packages)
 ```
 

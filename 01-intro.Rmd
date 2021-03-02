@@ -64,11 +64,33 @@ venn(gene_list)
 venn(x = gene_list, ellipse = TRUE)
 ```
 
+`venn` support `ggplot`, but it depends on `ggpolypath`, which is not popular.
+
+```{r eval=FALSE}
+venn::venn(gene_list, ellipse = TRUE, ggplot = TRUE)
+```
+
+`venn` plots Venn diagram up to 7 sets.
+
+```{r}
+venn::venn(6)
+```
+
+```{r}
+venn::venn(7)
+```
+
+
+
 ## `eulerr`
 
 [@R-eulerr]
 
 `eulerr` generates area-proportional euler diagrams that display set relationships (intersections, unions, and disjoints) with circles or ellipses.
+
+Unlike Venn diagrams, which show all possible relations between different sets, the Euler diagram shows only relevant relationships.
+
+Venn diagrams are a more restrictive form of Euler diagrams. A Venn diagram must contain all $2^n$ logically possible zones of overlap between its $n$ curves, representing all combinations of inclusion/exclusion of its constituent sets.
 
 ```{r}
 library(eulerr)

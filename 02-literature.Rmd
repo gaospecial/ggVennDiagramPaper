@@ -1,4 +1,4 @@
-# Using `ggVennDiagram`
+# Using `ggVennDiagram` {#using-ggVennDiagram}
 
 ```{r}
 library(ggVennDiagram)
@@ -12,6 +12,14 @@ library(ggplot2)
 p + scale_fill_distiller(palette = "RdBu")
 ```
 
+Some other palletes are:
+
+```{r fig.asp=1.5}
+RColorBrewer::display.brewer.all()
+```
+
+
+
 ## Adding note
 
 ```{r}
@@ -20,7 +28,7 @@ p + labs(title = "Four sets Venn Diagram",
          caption = Sys.Date())
 ```
 
-## 
+## Axis expansion
 
 ```{r}
 p1 <- ggVennDiagram(gene_list, 
