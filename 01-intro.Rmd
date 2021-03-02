@@ -1,0 +1,132 @@
+# Introduction {#intro}
+
+Suppose we have a list of genes.
+
+```{r}
+genes <- paste0("gene",1:1000)
+set.seed(20210302)
+gene_list <- list(A = sample(genes,100),
+                  B = sample(genes,200),
+                  C = sample(genes,300),
+                  D = sample(genes,200))
+```
+
+## `VennDiagram`
+
+[@R-VennDiagram]
+
+
+
+```{r}
+library(VennDiagram)
+VennDiagram <- venn.diagram(x = gene_list, filename = NULL)
+cowplot::plot_grid(VennDiagram)
+```
+
+```{r include=FALSE}
+# delete log file
+unlink("VennDiagram*.log")
+```
+
+
+## `colorfulVennPlot`
+
+[@R-colorfulVennPlot]
+
+This package can specify the filled color for each region, but the first required parameter is a numeric vector of length 15, with specific names in suitable order, which makes it is very complicated to setup and use.
+
+Besides, the filled color need to be specified one by one, which is very complicated as well.
+
+```{r}
+library(colorfulVennPlot)
+Colors <- c('red', 'yellow', 'green', 'pink', 'darkgreen','blue','lightblue','tan', 
+  'yellowgreen','orange','purple','white','grey','plum','brown')
+regions <- seq(15)
+names(regions) <- c('1000', '0100', '1100', '0010', '1010', '0110', '1110', '0001', 
+  '1001', '0101', '1101', '0011', '1011', '0111', '1111')
+plotVenn4d(regions, Colors=Colors)
+```
+
+## `venn`
+
+[@R-venn]
+
+Using `venn` is very simple.
+
+```{r}
+library(venn)
+venn(gene_list)
+```
+
+`venn` also support different shapes.
+
+```{r}
+venn(x = gene_list, ellipse = TRUE)
+```
+
+## `eulerr`
+
+[@R-eulerr]
+
+`eulerr` generates area-proportional euler diagrams that display set relationships (intersections, unions, and disjoints) with circles or ellipses.
+
+```{r}
+library(eulerr)
+venn_plot <- venn(gene_list)
+plot(venn_plot)
+```
+
+```{r}
+euler_plot <- euler(gene_list)
+plot(euler_plot)
+```
+
+## `venneuler`
+
+[@R-venneuler]
+
+`venneulerr` depends on JAVA runtime environment, which makes its installation is unbearable for non-JAVA users.
+
+Besides, its
+
+```{r}
+library(venneuler)
+combinations <- c(A=0.3, B=0.3, C=1.1, "A&B"=0.1, "A&C"=0.2, "B&C"=0.1 ,"A&B&C"=0.1)
+vd <- venneuler(combinations)
+plot(vd)
+```
+
+## `RVenn`
+
+[@R-RVenn]
+
+`RVenn` is a package for dealing with multiple sets, while the base R functions (`intersect`, `union` and `setdiff`) only work with two sets.
+
+The functions overlap, unite and discern abstract away the details, so one can just construct the universe and choose the sets to operate by index or set name.
+
+`RVenn` provide a `ggvenn()` function to draw 2-3 sets Venn diagram.
+
+```{r}
+library(RVenn)
+ggvenn(Venn(gene_list[1:3]))
+```
+
+## `gplots`
+
+[@R-gplots]
+
+`gplots` provides various R programming tools for plotting data. It supports Venn plot up to five sets.
+
+```{r}
+library(gplots)
+venn(gene_list)
+```
+
+## `ggVennDiagram`
+
+[@R-ggVennDiagram]
+
+```{r}
+library(ggVennDiagram)
+ggVennDiagram(gene_list)
+```
