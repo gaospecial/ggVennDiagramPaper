@@ -15,8 +15,6 @@ gene_list <- list(A = sample(genes,100),
 
 [@R-VennDiagram]
 
-
-
 ```{r}
 library(VennDiagram)
 VennDiagram <- venn.diagram(x = gene_list, filename = NULL)
@@ -27,7 +25,6 @@ cowplot::plot_grid(VennDiagram)
 # delete log file
 unlink("VennDiagram*.log")
 ```
-
 
 ## `colorfulVennPlot`
 
@@ -72,6 +69,11 @@ venn::venn(gene_list, ellipse = TRUE, ggplot = TRUE)
 
 `venn` plots Venn diagram up to 7 sets.
 
+
+```{r}
+venn::venn(5)
+```
+
 ```{r}
 venn::venn(6)
 ```
@@ -80,6 +82,18 @@ venn::venn(6)
 venn::venn(7)
 ```
 
+## `nVennR`
+
+`nVennR` provides an interface for the `nVenn` algorithm [@perez-silvaNVennGeneralizedQuasiproportional2018]. This algorithm works for any number of sets, and usually yields pleasing and informative Venn diagrams with proportionality information.
+
+```{r message=FALSE, warning=FALSE}
+library(nVennR)
+myNV <- plotVenn(gene_list)
+```
+
+```{r results="asis"}
+cat(myNV$svg)
+```
 
 
 ## `eulerr`

@@ -22,6 +22,7 @@ Sys.setenv(LANGUAGE = "en") # 显示英文报错信息
 - `VennDiagram`
 - `colorfulVennPlot`
 - `venn`
+- `nVennR`
 - `eulerr`
 - `venneuler`
 - `gplots`
@@ -31,7 +32,7 @@ You need to install these packages.
 
 ```{r}
 cran_packages <- c("VennDiagram","colorfulVennPlot","gplots","venn",
-                   "eulerr","venneuler","ggVennDiagram")
+                   "nVennR", "eulerr","venneuler","ggVennDiagram")
 xfun::pkg_load2(cran_packages)
 ```
 

@@ -1,3 +1,75 @@
 # Methods
 
-We describe our methods in this chapter.
+## Predefined `sysdata` in `venn`
+
+`venn::venn()` support Venn diagram up to 7 sets.
+
+It use predefined values to plot polygons. 
+
+```{r}
+library(dplyr)
+sets <- venn:::sets
+glimpse(sets)
+```
+
+- s: number of sets;
+- v: whether it is for ellipse;
+- n: No. of polygons;
+
+
+```{r}
+library(ggplot2)
+ggplot(sets, aes(x,y)) + 
+  geom_polygon(aes(color=factor(n)),alpha=1/5) + 
+  facet_grid(v~s) + 
+  coord_fixed() +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+## Set operation in `RVenn`
+
+```{r}
+library(purrr)
+library(RVenn)
+library(ggplot2)
+
+set.seed(42)
+toy <- map(sample(5:25, replace = FALSE, size = 10),
+          function(x) sort(sample(letters, size = x)))
+toy[1:3]
+```
+
+Construct the Venn object
+
+```{r}
+toy <- Venn(toy)
+glimpse(toy)
+```
+
+### Set operations in `RVenn`
+
+- **Intersection**
+
+```{r}
+# intersection
+overlap(toy)
+overlap(toy, slice = 1:3)
+overlap(toy, slice = c("Set_1","Set_2","Set_5"))
+```
+
+- **Union**
+
+```{r}
+unite(toy) %>% sort()
+unite(toy, slice = 1:3) %>% sort()
+```
+
+- **Set difference**
+
+```{r}
+discern(toy, slice1 = 1:9) %>% sort()
+discern(toy, slice1 = 1, slice2 = 2) %>% sort()
+discern(toy, slice1 = 1:7, slice2 = 8:9) %>% sort()
+```
+
