@@ -1,6 +1,15 @@
 # Using `ggVennDiagram` {#using-ggVennDiagram}
 
+
+
 ```{r}
+genes <- paste0("gene",1:1000)
+set.seed(20210302)
+gene_list <- list(A = sample(genes,100),
+                  B = sample(genes,200),
+                  C = sample(genes,300),
+                  D = sample(genes,200))
+
 library(ggVennDiagram)
 p <- ggVennDiagram(gene_list)
 ```
@@ -36,6 +45,26 @@ p1 <- ggVennDiagram(gene_list,
 p1
 p1 + scale_x_continuous(expand = expansion(mult = .2))
 ```
+
+## Show intersection values
+
+When intersection values only have several members, `ggVennDiagram` is efficient to show the values in places.
+
+```{r}
+set.seed(0)
+small_list <- lapply(sample(5:10, replace = TRUE, size = 4), function(x){
+  sample(letters,x)
+})
+
+get_region_items(small_list)
+
+p1 <- ggVennDiagram(small_list, 
+                    category.names = LETTERS[1:4], 
+                    show_intersect = TRUE,
+                    label = NULL)
+plotly::ggplotly(p1)
+```
+
 
 ```{r eval=FALSE}
 g <- ggplotGrob(p)
