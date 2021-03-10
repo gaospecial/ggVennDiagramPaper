@@ -6,6 +6,7 @@ Many R packages support Venn diagram.
 - `eulerr`
 - `venneuler`
 - `gplots`
+- `ggvenn`
 
 and `ggVennDiagram`.
 

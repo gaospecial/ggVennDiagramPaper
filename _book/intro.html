@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Introduction | ggVennDiagram cookbook</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Introduction | ggVennDiagram cookbook" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Introduction | ggVennDiagram cookbook" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Chun-Hui Gao" />
+
+
+<meta name="date" content="2021-03-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="using-ggVennDiagram.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Venn Diagram in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#list-of-packages"><i class="fa fa-check"></i><b>1.1</b> List of packages</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sessioninfo"><i class="fa fa-check"></i><b>1.2</b> Sessioninfo</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#venndiagram"><i class="fa fa-check"></i><b>2.1</b> <code>VennDiagram</code></a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#colorfulvennplot"><i class="fa fa-check"></i><b>2.2</b> <code>colorfulVennPlot</code></a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#venn"><i class="fa fa-check"></i><b>2.3</b> <code>venn</code></a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#nvennr"><i class="fa fa-check"></i><b>2.4</b> <code>nVennR</code></a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#eulerr"><i class="fa fa-check"></i><b>2.5</b> <code>eulerr</code></a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#venneuler"><i class="fa fa-check"></i><b>2.6</b> <code>venneuler</code></a></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#rvenn"><i class="fa fa-check"></i><b>2.7</b> <code>RVenn</code></a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#gplots"><i class="fa fa-check"></i><b>2.8</b> <code>gplots</code></a></li>
+<li class="chapter" data-level="2.9" data-path="intro.html"><a href="intro.html#ggvenndiagram"><i class="fa fa-check"></i><b>2.9</b> <code>ggVennDiagram</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html"><i class="fa fa-check"></i><b>3</b> Using <code>ggVennDiagram</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#changing-palette"><i class="fa fa-check"></i><b>3.1</b> Changing palette</a></li>
+<li class="chapter" data-level="3.2" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#adding-note"><i class="fa fa-check"></i><b>3.2</b> Adding note</a></li>
+<li class="chapter" data-level="3.3" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#axis-expansion"><i class="fa fa-check"></i><b>3.3</b> Axis expansion</a></li>
+<li class="chapter" data-level="3.4" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#show-intersection-values"><i class="fa fa-check"></i><b>3.4</b> Show intersection values</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="methods.html"><a href="methods.html#predefined-sysdata-in-venn"><i class="fa fa-check"></i><b>4.1</b> Predefined <code>sysdata</code> in <code>venn</code></a></li>
+<li class="chapter" data-level="4.2" data-path="methods.html"><a href="methods.html#set-operation-in-rvenn"><i class="fa fa-check"></i><b>4.2</b> Set operation in <code>RVenn</code></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#set-operations-in-rvenn"><i class="fa fa-check"></i><b>4.2.1</b> Set operations in <code>RVenn</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ggVennDiagram cookbook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
+<p>Suppose we have a list of genes.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;gene&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb4-2"><a href="intro.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20210302</span>)</span>
+<span id="cb4-3"><a href="intro.html#cb4-3" aria-hidden="true" tabindex="-1"></a>gene_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="fu">sample</span>(genes,<span class="dv">100</span>),</span>
+<span id="cb4-4"><a href="intro.html#cb4-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">B =</span> <span class="fu">sample</span>(genes,<span class="dv">200</span>),</span>
+<span id="cb4-5"><a href="intro.html#cb4-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">C =</span> <span class="fu">sample</span>(genes,<span class="dv">300</span>),</span>
+<span id="cb4-6"><a href="intro.html#cb4-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">D =</span> <span class="fu">sample</span>(genes,<span class="dv">200</span>))</span></code></pre></div>
+<div id="venndiagram" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> <code>VennDiagram</code></h2>
+<p><span class="citation">(<a href="references.html#ref-R-VennDiagram" role="doc-biblioref">Chen 2018</a>)</span></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span>
+<span id="cb5-2"><a href="intro.html#cb5-2" aria-hidden="true" tabindex="-1"></a>VennDiagram <span class="ot">&lt;-</span> <span class="fu">venn.diagram</span>(<span class="at">x =</span> gene_list, <span class="at">filename =</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-3"><a href="intro.html#cb5-3" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(VennDiagram)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="colorfulvennplot" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> <code>colorfulVennPlot</code></h2>
+<p><span class="citation">(<a href="references.html#ref-R-colorfulVennPlot" role="doc-biblioref">Noma and Manvae 2013</a>)</span></p>
+<p>This package can specify the filled color for each region, but the first required parameter is a numeric vector of length 15, with specific names in suitable order, which makes it is very complicated to setup and use.</p>
+<p>Besides, the filled color need to be specified one by one, which is very complicated as well.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorfulVennPlot)</span>
+<span id="cb6-2"><a href="intro.html#cb6-2" aria-hidden="true" tabindex="-1"></a>Colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;yellow&#39;</span>, <span class="st">&#39;green&#39;</span>, <span class="st">&#39;pink&#39;</span>, <span class="st">&#39;darkgreen&#39;</span>,<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;lightblue&#39;</span>,<span class="st">&#39;tan&#39;</span>, </span>
+<span id="cb6-3"><a href="intro.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;yellowgreen&#39;</span>,<span class="st">&#39;orange&#39;</span>,<span class="st">&#39;purple&#39;</span>,<span class="st">&#39;white&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;plum&#39;</span>,<span class="st">&#39;brown&#39;</span>)</span>
+<span id="cb6-4"><a href="intro.html#cb6-4" aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">15</span>)</span>
+<span id="cb6-5"><a href="intro.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(regions) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;1000&#39;</span>, <span class="st">&#39;0100&#39;</span>, <span class="st">&#39;1100&#39;</span>, <span class="st">&#39;0010&#39;</span>, <span class="st">&#39;1010&#39;</span>, <span class="st">&#39;0110&#39;</span>, <span class="st">&#39;1110&#39;</span>, <span class="st">&#39;0001&#39;</span>, </span>
+<span id="cb6-6"><a href="intro.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;1001&#39;</span>, <span class="st">&#39;0101&#39;</span>, <span class="st">&#39;1101&#39;</span>, <span class="st">&#39;0011&#39;</span>, <span class="st">&#39;1011&#39;</span>, <span class="st">&#39;0111&#39;</span>, <span class="st">&#39;1111&#39;</span>)</span>
+<span id="cb6-7"><a href="intro.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotVenn4d</span>(regions, <span class="at">Colors=</span>Colors)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="venn" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> <code>venn</code></h2>
+<p><span class="citation">(<a href="references.html#ref-R-venn" role="doc-biblioref">Dusa 2020</a>)</span></p>
+<p>Using <code>venn</code> is very simple.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(venn)</span>
+<span id="cb7-2"><a href="intro.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(gene_list)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><code>venn</code> also support different shapes.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="at">x =</span> gene_list, <span class="at">ellipse =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><code>venn</code> support <code>ggplot</code>, but it depends on <code>ggpolypath</code>, which is not popular.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(gene_list, <span class="at">ellipse =</span> <span class="cn">TRUE</span>, <span class="at">ggplot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><code>venn</code> plots Venn diagram up to 7 sets.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(<span class="dv">5</span>)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(<span class="dv">6</span>)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(<span class="dv">7</span>)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="nvennr" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> <code>nVennR</code></h2>
+<p><code>nVennR</code> provides an interface for the <code>nVenn</code> algorithm <span class="citation">(<a href="references.html#ref-perez-silvaNVennGeneralizedQuasiproportional2018" role="doc-biblioref">Pérez-Silva, Araujo-Voces, and Quesada 2018</a>)</span>. This algorithm works for any number of sets, and usually yields pleasing and informative Venn diagrams with proportionality information.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nVennR)</span>
+<span id="cb13-2"><a href="intro.html#cb13-2" aria-hidden="true" tabindex="-1"></a>myNV <span class="ot">&lt;-</span> <span class="fu">plotVenn</span>(gene_list)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intro.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(myNV<span class="sc">$</span>svg)</span></code></pre></div>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="700" height="500">
+<defs>
+<style type="text/css"><![CDATA[
+  .borderLine {
+       stroke: none;
+       fill-opacity:  0.4 ;
+  }
+  .outLine {
+       stroke-width:  1 ;
+       fill: none;
+  }
+  .circle {
+       stroke: #888888;
+       stroke-width: 0.5;
+       fill: none;
+    pointer-events: all;
+  }
+  .nLabel {
+       font-family: Arial;
+    pointer-events: none;
+       font-size: 10px;
+       text-anchor: middle;
+       alignment-baseline: central;
+  }
+  .belong {
+       font-family: Arial;
+    pointer-events: none;
+       font-size: 5px;
+       text-anchor: middle;
+       alignment-baseline: central;
+  }
+  .legend {
+    font-family: Arial;
+    font-size: 15px;
+  }
+  #legendBox {
+    display:  inline ;
+  }
+  .p0{
+    stroke: none;
+    fill: #e6194b;
+  }
+  .q0{
+    fill: none;
+    stroke: #e6194b;
+  }
+  .p1{
+    stroke: none;
+    fill: #3cb44b;
+  }
+  .q1{
+    fill: none;
+    stroke: #3cb44b;
+  }
+  .p2{
+    stroke: none;
+    fill: #ffe119;
+  }
+  .q2{
+    fill: none;
+    stroke: #ffe119;
+  }
+  .p3{
+    stroke: none;
+    fill: #0082c8;
+  }
+  .q3{
+    fill: none;
+    stroke: #0082c8;
+  }
+]]>
+</style>
+<symbol id="bl0">
+<path d="M 242.57 211.39 L 240.82 213.70 L 239.22 216.12 L 237.79 218.64 L 236.53 221.25 L 235.45 223.93 L 234.55 226.69 L 233.83 229.49 L 233.30 232.34 L 232.96 235.22 L 232.81 238.11 L 232.85 241.01 L 233.08 243.89 L 233.50 246.76 L 234.10 249.61 L 234.87 252.42 L 235.79 255.20 L 236.83 257.95 L 237.94 260.70 L 239.06 263.44 L 240.12 266.21 L 241.03 269.01 L 241.74 271.85 L 242.18 274.73 L 242.32 277.62 L 242.13 280.50 L 241.61 283.34 L 240.76 286.11 L 239.59 288.77 L 238.12 291.31 L 236.39 293.71 L 234.44 295.97 L 232.33 298.09 L 230.11 300.09 L 227.84 301.99 L 225.55 303.82 L 223.26 305.60 L 220.97 307.35 L 218.70 309.07 L 216.42 310.79 L 214.14 312.50 L 211.87 314.21 L 209.60 315.92 L 207.33 317.63 L 205.06 319.34 L 202.79 321.05 L 200.52 322.76 L 198.25 324.46 L 195.98 326.17 L 193.71 327.87 L 191.43 329.57 L 189.16 331.27 L 186.87 332.96 L 184.58 334.62 L 182.26 336.26 L 179.91 337.84 L 177.52 339.35 L 175.09 340.76 L 172.59 342.05 L 170.03 343.21 L 167.42 344.22 L 164.75 345.06 L 162.03 345.74 L 159.28 346.26 L 156.50 346.59 L 153.70 346.76 L 150.90 346.75 L 148.11 346.56 L 145.33 346.20 L 142.58 345.66 L 139.87 344.96 L 137.21 344.08 L 134.61 343.05 L 132.08 341.85 L 129.63 340.49 L 127.26 338.98 L 125.00 337.33 L 122.85 335.54 L 120.81 333.62 L 118.89 331.58 L 117.11 329.42 L 115.46 327.15 L 113.96 324.78 L 112.61 322.33 L 111.42 319.80 L 110.39 317.19 L 109.52 314.53 L 108.82 311.81 L 108.30 309.06 L 107.94 306.28 L 107.76 303.49 L 107.76 300.69 L 107.93 297.89 L 108.28 295.11 L 108.80 292.36 L 109.49 289.65 L 110.34 286.98 L 111.35 284.36 L 112.50 281.80 L 113.78 279.30 L 115.18 276.84 L 116.66 274.44 L 118.20 272.06 L 119.78 269.71 L 121.39 267.36 L 123.01 265.03 L 124.63 262.69 L 126.25 260.35 L 127.85 258.00 L 129.42 255.64 L 130.95 253.25 L 132.42 250.83 L 133.82 248.37 L 135.14 245.86 L 136.37 243.31 L 137.52 240.72 L 138.61 238.11 L 139.66 235.47 L 140.70 232.83 L 141.77 230.21 L 142.93 227.64 L 144.22 225.14 L 145.67 222.73 L 147.28 220.43 L 149.05 218.25 L 150.97 216.17 L 153.01 214.18 L 155.12 212.26 L 157.28 210.38 L 159.48 208.54 L 161.69 206.71 L 163.91 204.90 L 166.15 203.09 L 168.39 201.29 L 170.66 199.50 L 172.96 197.74 L 175.32 196.03 L 177.77 194.38 L 180.31 192.83 L 182.97 191.42 L 185.72 190.18 L 188.54 189.14 L 191.42 188.33 L 194.32 187.75 L 197.23 187.36 L 200.14 187.14 L 203.06 187.02 L 205.97 186.98 L 208.88 186.98 L 211.79 186.99 L 214.69 187.00 L 217.60 186.99 L 220.51 186.95 L 223.40 186.86 L 226.29 186.67 L 229.13 186.35 L 231.93 185.84 L 234.64 185.09 L 237.23 184.08 L 239.68 182.78 L 241.96 181.20 L 244.06 179.36 L 245.99 177.31 L 247.75 175.09 L 249.37 172.75 L 250.88 170.32 L 252.31 167.83 L 253.70 165.31 L 255.06 162.78 L 256.41 160.24 L 257.76 157.70 L 259.11 155.16 L 260.50 152.65 L 261.93 150.17 L 263.43 147.74 L 265.02 145.37 L 266.73 143.11 L 268.57 140.96 L 270.56 138.96 L 272.69 137.13 L 274.96 135.47 L 277.36 134.01 L 279.87 132.77 L 282.48 131.74 L 285.17 130.94 L 287.92 130.38 L 290.70 130.06 L 293.51 129.97 L 296.31 130.13 L 299.08 130.53 L 301.81 131.17 L 304.48 132.04 L 307.06 133.13 L 309.54 134.45 L 311.90 135.97 L 314.12 137.69 L 316.18 139.60 L 318.07 141.67 L 319.77 143.90 L 321.28 146.27 L 322.58 148.76 L 323.65 151.35 L 324.50 154.03 L 325.11 156.78 L 325.47 159.58 L 325.57 162.41 L 325.42 165.27 L 325.00 168.15 L 324.32 171.01 L 323.39 173.84 L 322.20 176.60 L 320.79 179.25 L 319.16 181.74 L 317.32 184.07 L 315.30 186.19 L 313.10 188.11 L 310.75 189.81 L 308.25 191.28 L 305.63 192.52 L 302.92 193.53 L 300.12 194.30 L 297.26 194.84 L 294.35 195.16 L 291.42 195.31 L 288.47 195.31 L 285.51 195.23 L 282.55 195.13 L 279.57 195.08 L 276.59 195.13 L 273.61 195.31 L 270.64 195.67 L 267.67 196.22 L 264.72 196.96 L 261.81 197.90 L 258.97 199.03 L 256.22 200.34 L 253.59 201.81 L 251.09 203.44 L 248.74 205.22 L 246.54 207.14 L 244.48 209.20 Z" />
+</symbol>
+<symbol id="bl1">
+<path d="M 243.45 185.73 L 242.10 188.85 L 240.82 192.00 L 239.62 195.16 L 238.46 198.34 L 237.33 201.51 L 236.22 204.69 L 235.12 207.87 L 234.03 211.05 L 232.93 214.23 L 231.84 217.41 L 230.74 220.59 L 229.64 223.76 L 228.53 226.94 L 227.39 230.10 L 226.21 233.24 L 224.95 236.33 L 223.59 239.35 L 222.06 242.23 L 220.35 244.92 L 218.43 247.35 L 216.28 249.47 L 213.93 251.25 L 211.39 252.70 L 208.70 253.86 L 205.88 254.77 L 202.97 255.48 L 199.99 256.02 L 196.94 256.44 L 193.85 256.77 L 190.74 257.03 L 187.60 257.26 L 184.46 257.46 L 181.31 257.64 L 178.15 257.79 L 175.00 257.91 L 171.83 257.97 L 168.67 257.97 L 165.49 257.90 L 162.30 257.77 L 159.12 257.64 L 155.93 257.55 L 152.76 257.56 L 149.60 257.71 L 146.47 258.03 L 143.37 258.55 L 140.32 259.26 L 137.31 260.16 L 134.34 261.21 L 131.42 262.41 L 128.54 263.71 L 125.70 265.08 L 122.87 266.51 L 120.06 267.97 L 117.25 269.44 L 114.44 270.91 L 111.63 272.36 L 108.80 273.77 L 105.94 275.13 L 103.06 276.40 L 100.14 277.57 L 97.17 278.62 L 94.17 279.54 L 91.13 280.33 L 88.06 280.97 L 84.96 281.47 L 81.84 281.81 L 78.71 282.01 L 75.57 282.06 L 72.44 281.97 L 69.31 281.72 L 66.20 281.32 L 63.11 280.77 L 60.05 280.08 L 57.03 279.25 L 54.05 278.27 L 51.12 277.15 L 48.24 275.89 L 45.43 274.50 L 42.69 272.97 L 40.02 271.32 L 37.43 269.54 L 34.93 267.64 L 32.53 265.63 L 30.22 263.50 L 28.01 261.26 L 25.92 258.93 L 23.93 256.49 L 22.07 253.97 L 20.32 251.35 L 18.70 248.66 L 17.21 245.90 L 15.85 243.06 L 14.63 240.17 L 13.55 237.21 L 12.61 234.22 L 11.81 231.18 L 11.15 228.10 L 10.64 225.00 L 10.28 221.88 L 10.07 218.74 L 10.00 215.60 L 10.08 212.46 L 10.32 209.32 L 10.70 206.20 L 11.22 203.10 L 11.90 200.03 L 12.71 196.99 L 13.67 194.00 L 14.78 191.06 L 16.01 188.17 L 17.39 185.34 L 18.89 182.59 L 20.53 179.90 L 22.29 177.30 L 24.17 174.79 L 26.17 172.36 L 28.28 170.04 L 30.50 167.81 L 32.82 165.69 L 35.23 163.68 L 37.73 161.77 L 40.31 159.96 L 42.95 158.25 L 45.64 156.60 L 48.37 155.01 L 51.13 153.47 L 53.91 151.95 L 56.69 150.44 L 59.48 148.94 L 62.27 147.45 L 65.07 145.96 L 67.86 144.47 L 70.66 142.98 L 73.46 141.50 L 76.26 140.01 L 79.05 138.52 L 81.85 137.03 L 84.65 135.55 L 87.45 134.06 L 90.25 132.57 L 93.05 131.08 L 95.85 129.60 L 98.65 128.11 L 101.45 126.62 L 104.25 125.14 L 107.05 123.65 L 109.86 122.16 L 112.66 120.68 L 115.46 119.19 L 118.26 117.70 L 121.07 116.22 L 123.87 114.73 L 126.68 113.25 L 129.49 111.77 L 132.30 110.30 L 135.12 108.85 L 137.95 107.42 L 140.80 106.03 L 143.68 104.70 L 146.59 103.45 L 149.53 102.29 L 152.51 101.23 L 155.53 100.24 L 158.56 99.33 L 161.62 98.46 L 164.69 97.62 L 167.76 96.81 L 170.84 96.00 L 173.92 95.19 L 177.00 94.39 L 180.08 93.58 L 183.16 92.78 L 186.24 91.97 L 189.32 91.17 L 192.40 90.37 L 195.49 89.57 L 198.57 88.77 L 201.65 87.96 L 204.73 87.16 L 207.81 86.36 L 210.90 85.56 L 213.98 84.77 L 217.06 83.97 L 220.15 83.20 L 223.24 82.44 L 226.34 81.73 L 229.45 81.09 L 232.57 80.54 L 235.70 80.13 L 238.85 79.89 L 241.98 79.85 L 245.11 80.04 L 248.19 80.49 L 251.23 81.19 L 254.18 82.16 L 257.04 83.39 L 259.77 84.87 L 262.36 86.59 L 264.78 88.53 L 267.02 90.69 L 269.05 93.04 L 270.86 95.56 L 272.44 98.23 L 273.77 101.04 L 274.83 103.96 L 275.63 106.96 L 276.16 110.02 L 276.41 113.11 L 276.37 116.22 L 276.07 119.31 L 275.50 122.38 L 274.68 125.39 L 273.63 128.35 L 272.40 131.25 L 271.01 134.09 L 269.51 136.88 L 267.95 139.66 L 266.36 142.42 L 264.76 145.19 L 263.19 147.97 L 261.63 150.77 L 260.09 153.58 L 258.57 156.40 L 257.06 159.23 L 255.55 162.07 L 254.04 164.92 L 252.52 167.79 L 250.99 170.67 L 249.45 173.60 L 247.90 176.56 L 246.37 179.57 L 244.88 182.63 Z" />
+</symbol>
+<symbol id="bl2">
+<path d="M 434.02 290.28 L 430.37 291.55 L 426.67 292.67 L 422.92 293.62 L 419.14 294.40 L 415.32 295.00 L 411.48 295.45 L 407.62 295.72 L 403.75 295.84 L 399.88 295.81 L 396.00 295.66 L 392.12 295.40 L 388.25 295.07 L 384.38 294.68 L 380.50 294.26 L 376.63 293.82 L 372.76 293.37 L 368.88 292.92 L 365.01 292.46 L 361.13 292.00 L 357.26 291.55 L 353.38 291.09 L 349.51 290.63 L 345.63 290.17 L 341.75 289.71 L 337.87 289.25 L 333.99 288.80 L 330.11 288.34 L 326.23 287.88 L 322.35 287.42 L 318.47 286.96 L 314.58 286.50 L 310.70 286.04 L 306.81 285.59 L 302.91 285.14 L 298.99 284.69 L 295.04 284.26 L 291.03 283.85 L 286.93 283.43 L 282.72 282.99 L 278.37 282.45 L 273.87 281.73 L 269.24 280.71 L 264.54 279.29 L 259.86 277.40 L 255.28 274.98 L 250.91 272.04 L 246.80 268.60 L 243.00 264.73 L 239.49 260.52 L 236.24 256.05 L 233.18 251.44 L 230.24 246.79 L 227.36 242.23 L 224.48 237.90 L 221.53 233.94 L 218.48 230.49 L 215.31 227.65 L 211.99 225.45 L 208.53 223.86 L 204.94 222.78 L 201.26 222.03 L 197.53 221.42 L 193.79 220.74 L 190.07 219.84 L 186.38 218.58 L 182.71 216.90 L 179.00 214.82 L 175.20 212.36 L 171.26 209.62 L 167.19 206.66 L 162.99 203.57 L 158.70 200.38 L 154.38 197.12 L 150.07 193.82 L 145.85 190.47 L 141.78 187.06 L 137.92 183.58 L 134.35 180.03 L 131.13 176.41 L 128.30 172.71 L 125.88 168.94 L 123.87 165.10 L 122.26 161.19 L 121.06 157.23 L 120.25 153.21 L 119.81 149.17 L 119.74 145.11 L 120.04 141.07 L 120.69 137.08 L 121.69 133.15 L 123.03 129.33 L 124.70 125.65 L 126.69 122.12 L 128.98 118.78 L 131.55 115.65 L 134.39 112.76 L 137.47 110.13 L 140.77 107.78 L 144.26 105.72 L 147.91 103.98 L 151.71 102.57 L 155.61 101.49 L 159.60 100.76 L 163.63 100.38 L 167.68 100.36 L 171.71 100.69 L 175.70 101.37 L 179.62 102.40 L 183.43 103.77 L 187.10 105.47 L 190.62 107.49 L 193.96 109.82 L 197.11 112.44 L 200.08 115.33 L 202.88 118.46 L 205.58 121.80 L 208.23 125.28 L 210.92 128.82 L 213.72 132.31 L 216.69 135.63 L 219.86 138.65 L 223.22 141.30 L 226.74 143.50 L 230.37 145.23 L 234.07 146.49 L 237.81 147.29 L 241.57 147.65 L 245.32 147.59 L 249.04 147.12 L 252.70 146.26 L 256.30 145.06 L 259.81 143.57 L 263.25 141.86 L 266.64 140.03 L 270.02 138.14 L 273.42 136.31 L 276.88 134.61 L 280.42 133.10 L 284.04 131.83 L 287.75 130.80 L 291.53 129.99 L 295.36 129.37 L 299.22 128.89 L 303.10 128.50 L 307.00 128.17 L 310.89 127.88 L 314.79 127.60 L 318.69 127.34 L 322.59 127.07 L 326.48 126.81 L 330.38 126.55 L 334.27 126.29 L 338.17 126.03 L 342.06 125.77 L 345.96 125.51 L 349.85 125.25 L 353.74 124.99 L 357.63 124.73 L 361.52 124.47 L 365.41 124.21 L 369.30 123.95 L 373.19 123.70 L 377.08 123.44 L 380.96 123.19 L 384.85 122.95 L 388.73 122.74 L 392.62 122.56 L 396.50 122.44 L 400.39 122.40 L 404.27 122.46 L 408.14 122.65 L 412.00 122.98 L 415.84 123.46 L 419.65 124.10 L 423.44 124.91 L 427.18 125.88 L 430.87 127.03 L 434.51 128.33 L 438.09 129.80 L 441.60 131.42 L 445.03 133.20 L 448.38 135.14 L 451.64 137.22 L 454.81 139.45 L 457.87 141.81 L 460.82 144.31 L 463.66 146.94 L 466.38 149.70 L 468.97 152.57 L 471.43 155.56 L 473.76 158.66 L 475.94 161.85 L 477.98 165.15 L 479.87 168.53 L 481.61 171.99 L 483.19 175.52 L 484.62 179.13 L 485.88 182.79 L 486.98 186.51 L 487.91 190.27 L 488.67 194.07 L 489.26 197.90 L 489.68 201.75 L 489.93 205.62 L 490.00 209.49 L 489.90 213.36 L 489.63 217.23 L 489.19 221.08 L 488.57 224.91 L 487.79 228.70 L 486.84 232.45 L 485.72 236.16 L 484.43 239.82 L 482.99 243.41 L 481.38 246.94 L 479.62 250.39 L 477.71 253.75 L 475.65 257.03 L 473.44 260.21 L 471.10 263.29 L 468.62 266.26 L 466.01 269.12 L 463.28 271.86 L 460.42 274.47 L 457.45 276.95 L 454.38 279.30 L 451.20 281.50 L 447.93 283.56 L 444.57 285.47 L 441.12 287.23 L 437.60 288.83 Z" />
+</symbol>
+<symbol id="bl3">
+<path d="M 334.57 294.21 L 335.34 297.52 L 336.12 300.82 L 336.89 304.13 L 337.66 307.44 L 338.43 310.74 L 339.20 314.05 L 339.96 317.36 L 340.72 320.66 L 341.47 323.97 L 342.20 327.28 L 342.90 330.60 L 343.55 333.92 L 344.13 337.26 L 344.62 340.60 L 345.00 343.96 L 345.25 347.33 L 345.35 350.70 L 345.30 354.06 L 345.08 357.42 L 344.71 360.77 L 344.17 364.09 L 343.47 367.39 L 342.61 370.64 L 341.59 373.85 L 340.41 377.01 L 339.08 380.10 L 337.60 383.13 L 335.97 386.07 L 334.20 388.94 L 332.30 391.72 L 330.25 394.40 L 328.08 396.97 L 325.79 399.44 L 323.37 401.79 L 320.85 404.02 L 318.21 406.13 L 315.48 408.10 L 312.66 409.94 L 309.74 411.63 L 306.75 413.18 L 303.69 414.59 L 300.56 415.84 L 297.37 416.94 L 294.13 417.88 L 290.85 418.66 L 287.54 419.28 L 284.20 419.73 L 280.85 420.02 L 277.48 420.15 L 274.11 420.11 L 270.74 419.91 L 267.39 419.54 L 264.07 419.01 L 260.77 418.32 L 257.51 417.46 L 254.30 416.45 L 251.14 415.28 L 248.04 413.95 L 245.01 412.48 L 242.06 410.86 L 239.20 409.09 L 236.42 407.19 L 233.74 405.16 L 231.16 402.99 L 228.69 400.70 L 226.34 398.29 L 224.11 395.77 L 222.00 393.15 L 220.03 390.42 L 218.20 387.60 L 216.50 384.69 L 214.95 381.71 L 213.54 378.65 L 212.28 375.52 L 211.15 372.35 L 210.16 369.12 L 209.28 365.86 L 208.50 362.57 L 207.80 359.25 L 207.16 355.93 L 206.56 352.59 L 205.98 349.25 L 205.42 345.91 L 204.87 342.56 L 204.32 339.21 L 203.77 335.86 L 203.22 332.51 L 202.67 329.16 L 202.13 325.80 L 201.58 322.45 L 201.03 319.10 L 200.48 315.74 L 199.93 312.38 L 199.36 309.01 L 198.77 305.63 L 198.14 302.22 L 197.46 298.75 L 196.70 295.20 L 195.87 291.54 L 194.97 287.73 L 194.05 283.75 L 193.15 279.58 L 192.31 275.23 L 191.55 270.73 L 190.87 266.12 L 190.29 261.45 L 189.82 256.78 L 189.50 252.16 L 189.38 247.64 L 189.54 243.28 L 190.06 239.14 L 191.01 235.24 L 192.40 231.60 L 194.22 228.20 L 196.37 224.99 L 198.71 221.90 L 201.09 218.83 L 203.33 215.70 L 205.29 212.44 L 206.87 209.01 L 208.06 205.44 L 208.87 201.73 L 209.36 197.95 L 209.61 194.11 L 209.71 190.25 L 209.71 186.38 L 209.69 182.51 L 209.71 178.62 L 209.80 174.71 L 210.02 170.79 L 210.38 166.85 L 210.85 162.90 L 211.37 158.98 L 211.85 155.10 L 212.23 151.29 L 212.41 147.55 L 212.37 143.87 L 212.09 140.26 L 211.60 136.69 L 210.95 133.16 L 210.20 129.66 L 209.44 126.16 L 208.78 122.65 L 208.31 119.14 L 208.09 115.62 L 208.18 112.12 L 208.59 108.65 L 209.35 105.24 L 210.45 101.93 L 211.88 98.76 L 213.63 95.74 L 215.68 92.92 L 218.01 90.33 L 220.59 87.99 L 223.40 85.93 L 226.41 84.17 L 229.58 82.72 L 232.88 81.61 L 236.28 80.84 L 239.75 80.42 L 243.23 80.36 L 246.71 80.66 L 250.13 81.31 L 253.47 82.31 L 256.70 83.65 L 259.76 85.31 L 262.64 87.27 L 265.31 89.52 L 267.72 92.03 L 269.87 94.77 L 271.73 97.72 L 273.27 100.85 L 274.48 104.12 L 275.36 107.49 L 275.88 110.94 L 276.05 114.42 L 275.87 117.91 L 275.36 121.37 L 274.53 124.79 L 273.42 128.15 L 272.08 131.44 L 270.57 134.68 L 268.96 137.88 L 267.34 141.07 L 265.77 144.29 L 264.35 147.56 L 263.13 150.89 L 262.19 154.28 L 261.55 157.74 L 261.27 161.23 L 261.36 164.73 L 261.83 168.22 L 262.69 171.65 L 263.92 174.99 L 265.52 178.19 L 267.45 181.20 L 269.68 183.99 L 272.17 186.52 L 274.89 188.78 L 277.79 190.78 L 280.84 192.56 L 283.99 194.18 L 287.19 195.70 L 290.39 197.20 L 293.55 198.76 L 296.63 200.43 L 299.60 202.26 L 302.44 204.27 L 305.11 206.49 L 307.60 208.90 L 309.89 211.52 L 311.98 214.32 L 313.84 217.31 L 315.50 220.47 L 316.95 223.77 L 318.22 227.18 L 319.34 230.65 L 320.34 234.14 L 321.26 237.62 L 322.11 241.05 L 322.93 244.45 L 323.72 247.81 L 324.51 251.15 L 325.29 254.47 L 326.07 257.79 L 326.84 261.11 L 327.62 264.42 L 328.39 267.73 L 329.16 271.04 L 329.94 274.35 L 330.71 277.66 L 331.48 280.97 L 332.26 284.28 L 333.03 287.59 L 333.80 290.90 Z" />
+</symbol>
+</defs>
+<!-- isDone: 0 -->
+<rect width="700" height="500" style="fill:#fff;stroke-width:0" />
+<use class="p0 borderLine" xlink:href="#bl0"/>
+<use class="p1 borderLine" xlink:href="#bl1"/>
+<use class="p2 borderLine" xlink:href="#bl2"/>
+<use class="p3 borderLine" xlink:href="#bl3"/>
+<use class="q0 outLine" xlink:href="#bl0"/>
+<use class="q1 outLine" xlink:href="#bl1"/>
+<use class="q2 outLine" xlink:href="#bl2"/>
+<use class="q3 outLine" xlink:href="#bl3"/>
+<circle onclick="fromCircle(8)" class="circle" cx="152.0847" cy="302.4733" r="41.6954" />
+<text class="nLabel" x="152.08" y="297.47">43</text>
+<text class="belong" x="152.08" y="307.47">(1)</text>
+<circle onclick="fromCircle(12)" class="circle" cx="164.8755" cy="234.6651" r="20.1073" />
+<text class="nLabel" x="164.88" y="229.67">10</text>
+<text class="belong" x="164.88" y="239.67">(1, 2)</text>
+<circle onclick="fromCircle(14)" class="circle" cx="192.3402" cy="204.6717" r="14.2180" />
+<text class="nLabel" x="192.34" y="199.67">5</text>
+<text class="belong" x="192.34" y="209.67">(1, 2, 3)</text>
+<circle onclick="fromCircle(15)" class="circle" cx="222.0904" cy="203.9084" r="6.3585" />
+<text class="nLabel" x="222.09" y="198.91">1</text>
+<text class="belong" x="222.09" y="208.91">(1, 2, 3, 4)</text>
+<circle onclick="fromCircle(4)" class="circle" cx="75.2559" cy="215.7976" r="63.2662" />
+<text class="nLabel" x="75.26" y="210.80">99</text>
+<text class="belong" x="75.26" y="220.80">(2)</text>
+<circle onclick="fromCircle(6)" class="circle" cx="165.6388" cy="146.2280" r="44.0529" />
+<text class="nLabel" x="165.64" y="141.23">48</text>
+<text class="belong" x="165.64" y="151.23">(2, 3)</text>
+<circle onclick="fromCircle(7)" class="circle" cx="229.6936" cy="166.5047" r="16.8230" />
+<text class="nLabel" x="229.69" y="161.50">7</text>
+<text class="belong" x="229.69" y="171.50">(2, 3, 4)</text>
+<circle onclick="fromCircle(5)" class="circle" cx="242.1657" cy="113.8526" r="31.7925" />
+<text class="nLabel" x="242.17" y="108.85">25</text>
+<text class="belong" x="242.17" y="118.85">(2, 4)</text>
+<circle onclick="fromCircle(2)" class="circle" cx="404.9280" cy="209.1464" r="83.8743" />
+<text class="nLabel" x="404.93" y="204.15">174</text>
+<text class="belong" x="404.93" y="214.15">(3)</text>
+<circle onclick="fromCircle(10)" class="circle" cx="293.3668" cy="162.3403" r="29.8240" />
+<text class="nLabel" x="293.37" y="157.34">22</text>
+<text class="belong" x="293.37" y="167.34">(1, 3)</text>
+<circle onclick="fromCircle(11)" class="circle" cx="255.7407" cy="186.6261" r="8.9923" />
+<text class="nLabel" x="255.74" y="181.63">2</text>
+<text class="belong" x="255.74" y="191.63">(1, 3, 4)</text>
+<circle onclick="fromCircle(3)" class="circle" cx="276.6339" cy="238.9804" r="40.7142" />
+<text class="nLabel" x="276.63" y="233.98">41</text>
+<text class="belong" x="276.63" y="243.98">(3, 4)</text>
+<circle onclick="fromCircle(1)" class="circle" cx="276.9777" cy="352.3617" r="65.7728" />
+<text class="nLabel" x="276.98" y="347.36">107</text>
+<text class="belong" x="276.98" y="357.36">(4)</text>
+<circle onclick="fromCircle(9)" class="circle" cx="217.9595" cy="277.8352" r="22.0265" />
+<text class="nLabel" x="217.96" y="272.84">12</text>
+<text class="belong" x="217.96" y="282.84">(1, 4)</text>
+<circle onclick="fromCircle(13)" class="circle" cx="205.4246" cy="238.5191" r="14.2180" />
+<text class="nLabel" x="205.42" y="233.52">5</text>
+<text class="belong" x="205.42" y="243.52">(1, 2, 4)</text>
+<g id="legendBox">
+<rect class="p0 borderLine" x="500.00" y="50.00" width="30.00" height="15.00" />
+<rect class="q0" x="500.00" y="50.00" width="30.00" height="15.00" />
+<text class="legend" x="540.00" y="65.00">A</text>
+<rect class="p1 borderLine" x="500.00" y="90.00" width="30.00" height="15.00" />
+<rect class="q1" x="500.00" y="90.00" width="30.00" height="15.00" />
+<text class="legend" x="540.00" y="105.00">B</text>
+<rect class="p2 borderLine" x="500.00" y="130.00" width="30.00" height="15.00" />
+<rect class="q2" x="500.00" y="130.00" width="30.00" height="15.00" />
+<text class="legend" x="540.00" y="145.00">C</text>
+<rect class="p3 borderLine" x="500.00" y="170.00" width="30.00" height="15.00" />
+<rect class="q3" x="500.00" y="170.00" width="30.00" height="15.00" />
+<text class="legend" x="540.00" y="185.00">D</text>
+</g>
+</svg>
+</div>
+<div id="eulerr" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> <code>eulerr</code></h2>
+<p><span class="citation">(<a href="references.html#ref-R-eulerr" role="doc-biblioref">Larsson 2020</a>)</span></p>
+<p><code>eulerr</code> generates area-proportional euler diagrams that display set relationships (intersections, unions, and disjoints) with circles or ellipses.</p>
+<p>Unlike Venn diagrams, which show all possible relations between different sets, the Euler diagram shows only relevant relationships.</p>
+<p>Venn diagrams are a more restrictive form of Euler diagrams. A Venn diagram must contain all <span class="math inline">\(2^n\)</span> logically possible zones of overlap between its <span class="math inline">\(n\)</span> curves, representing all combinations of inclusion/exclusion of its constituent sets.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(eulerr)</span>
+<span id="cb15-2"><a href="intro.html#cb15-2" aria-hidden="true" tabindex="-1"></a>venn_plot <span class="ot">&lt;-</span> <span class="fu">venn</span>(gene_list)</span>
+<span id="cb15-3"><a href="intro.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(venn_plot)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1" aria-hidden="true" tabindex="-1"></a>euler_plot <span class="ot">&lt;-</span> <span class="fu">euler</span>(gene_list)</span>
+<span id="cb16-2"><a href="intro.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(euler_plot)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="venneuler" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> <code>venneuler</code></h2>
+<p><span class="citation">(<a href="references.html#ref-R-venneuler" role="doc-biblioref">Wilkinson 2011</a>)</span></p>
+<p><code>venneulerr</code> depends on JAVA runtime environment, which makes its installation is unbearable for non-JAVA users.</p>
+<p>Besides, its</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(venneuler)</span>
+<span id="cb17-2"><a href="intro.html#cb17-2" aria-hidden="true" tabindex="-1"></a>combinations <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">A=</span><span class="fl">0.3</span>, <span class="at">B=</span><span class="fl">0.3</span>, <span class="at">C=</span><span class="fl">1.1</span>, <span class="st">&quot;A&amp;B&quot;</span><span class="ot">=</span><span class="fl">0.1</span>, <span class="st">&quot;A&amp;C&quot;</span><span class="ot">=</span><span class="fl">0.2</span>, <span class="st">&quot;B&amp;C&quot;</span><span class="ot">=</span><span class="fl">0.1</span> ,<span class="st">&quot;A&amp;B&amp;C&quot;</span><span class="ot">=</span><span class="fl">0.1</span>)</span>
+<span id="cb17-3"><a href="intro.html#cb17-3" aria-hidden="true" tabindex="-1"></a>vd <span class="ot">&lt;-</span> <span class="fu">venneuler</span>(combinations)</span>
+<span id="cb17-4"><a href="intro.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vd)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="rvenn" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> <code>RVenn</code></h2>
+<p><span class="citation">(<a href="references.html#ref-R-RVenn" role="doc-biblioref">Akyol 2019</a>)</span></p>
+<p><code>RVenn</code> is a package for dealing with multiple sets, while the base R functions (<code>intersect</code>, <code>union</code> and <code>setdiff</code>) only work with two sets.</p>
+<p>The functions overlap, unite and discern abstract away the details, so one can just construct the universe and choose the sets to operate by index or set name.</p>
+<p><code>RVenn</code> provide a <code>ggvenn()</code> function to draw 2-3 sets Venn diagram.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVenn)</span>
+<span id="cb18-2"><a href="intro.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(<span class="fu">Venn</span>(gene_list[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]))</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="gplots" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> <code>gplots</code></h2>
+<p><span class="citation">(<a href="references.html#ref-R-gplots" role="doc-biblioref">Warnes et al. 2020</a>)</span></p>
+<p><code>gplots</code> provides various R programming tools for plotting data. It supports Venn plot up to five sets.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb19-2"><a href="intro.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(gene_list)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="ggvenndiagram" class="section level2" number="2.9">
+<h2><span class="header-section-number">2.9</span> <code>ggVennDiagram</code></h2>
+<p><span class="citation">(<a href="references.html#ref-R-ggVennDiagram" role="doc-biblioref">Gao 2021</a>)</span></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggVennDiagram)</span>
+<span id="cb20-2"><a href="intro.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(gene_list)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-ggVennDiagram.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ggVennDiagramPaper"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
