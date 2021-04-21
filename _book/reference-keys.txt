@@ -16,6 +16,7 @@ changing-palette
 adding-note
 axis-expansion
 show-intersection-values
+comprehensive-customization-by-using-helper-functions
 methods
 predefined-sysdata-in-venn
 set-operation-in-rvenn

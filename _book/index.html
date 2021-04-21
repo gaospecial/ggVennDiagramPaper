@@ -24,7 +24,7 @@
 <meta name="author" content="Chun-Hui Gao" />
 
 
-<meta name="date" content="2021-03-10" />
+<meta name="date" content="2021-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,6 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#adding-note"><i class="fa fa-check"></i><b>3.2</b> Adding note</a></li>
 <li class="chapter" data-level="3.3" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#axis-expansion"><i class="fa fa-check"></i><b>3.3</b> Axis expansion</a></li>
 <li class="chapter" data-level="3.4" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#show-intersection-values"><i class="fa fa-check"></i><b>3.4</b> Show intersection values</a></li>
+<li class="chapter" data-level="3.5" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#comprehensive-customization-by-using-helper-functions"><i class="fa fa-check"></i><b>3.5</b> Comprehensive customization by using helper functions</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a>
 <ul>
@@ -204,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">ggVennDiagram cookbook</h1>
 <p class="author"><em>Chun-Hui Gao</em></p>
-<p class="date"><em>2021-03-10</em></p>
+<p class="date"><em>2021-04-21</em></p>
 </div>
 <div id="prerequisites" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Prerequisites</h1>
@@ -228,7 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sessioninfo" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Sessioninfo</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.0.3 (2020-10-10)
+<pre><code>## R version 4.0.4 (2021-02-15)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19041)
 ## 
@@ -245,26 +246,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.5           pillar_1.4.6         compiler_4.0.3      
+##  [1] Rcpp_1.0.5           pillar_1.4.6         compiler_4.0.4      
 ##  [4] nVennR_0.2.3         formatR_1.7          futile.logger_1.4.3 
-##  [7] venneuler_1.1-0      class_7.3-17         bitops_1.0-6        
-## [10] futile.options_1.0.1 tools_4.0.3          digest_0.6.27       
-## [13] gtable_0.3.0         tibble_3.0.4         evaluate_0.14       
-## [16] lifecycle_0.2.0      pkgconfig_2.0.3      rlang_0.4.10        
-## [19] DBI_1.1.0            rstudioapi_0.13      yaml_2.2.1          
-## [22] ggVennDiagram_0.5.0  VennDiagram_1.6.20   xfun_0.19           
-## [25] e1071_1.7-4          rJava_0.9-13         stringr_1.4.0       
-## [28] dplyr_1.0.2          knitr_1.30           admisc_0.11         
-## [31] generics_0.1.0       vctrs_0.3.4          gtools_3.8.2        
-## [34] caTools_1.18.0       classInt_0.4-3       tidyselect_1.1.0    
-## [37] grid_4.0.3           colorfulVennPlot_2.4 glue_1.4.2          
-## [40] sf_0.9-6             R6_2.5.0             rmarkdown_2.5       
-## [43] bookdown_0.21        ggplot2_3.3.2        purrr_0.3.4         
-## [46] lambda.r_1.2.4       eulerr_6.1.0         magrittr_2.0.1      
-## [49] units_0.6-7          scales_1.1.1         ellipsis_0.3.1      
-## [52] gplots_3.1.0         htmltools_0.5.1.1    colorspace_2.0-0    
-## [55] KernSmooth_2.23-18   stringi_1.5.3        munsell_0.5.0       
-## [58] crayon_1.3.4         venn_1.9</code></pre>
+##  [7] venneuler_1.1-0      bitops_1.0-6         futile.options_1.0.1
+## [10] tools_4.0.4          digest_0.6.27        tibble_3.0.4        
+## [13] evaluate_0.14        lifecycle_0.2.0      gtable_0.3.0        
+## [16] pkgconfig_2.0.3      rlang_0.4.10         rstudioapi_0.13     
+## [19] yaml_2.2.1           ggVennDiagram_1.0.5  VennDiagram_1.6.20  
+## [22] xfun_0.19            rJava_0.9-13         dplyr_1.0.2         
+## [25] stringr_1.4.0        knitr_1.30           generics_0.1.0      
+## [28] vctrs_0.3.4          admisc_0.11          gtools_3.8.2        
+## [31] caTools_1.18.0       tidyselect_1.1.0     grid_4.0.4          
+## [34] colorfulVennPlot_2.4 glue_1.4.2           R6_2.5.0            
+## [37] rmarkdown_2.5        bookdown_0.21        RVenn_1.1.0         
+## [40] purrr_0.3.4          ggplot2_3.3.2        lambda.r_1.2.4      
+## [43] eulerr_6.1.0         magrittr_2.0.1       ellipsis_0.3.1      
+## [46] gplots_3.1.0         scales_1.1.1         htmltools_0.5.1.1   
+## [49] colorspace_2.0-0     KernSmooth_2.23-18   stringi_1.5.3       
+## [52] munsell_0.5.0        crayon_1.3.4         venn_1.9</code></pre>
 
 </div>
 </div>

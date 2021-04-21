@@ -24,7 +24,7 @@
 <meta name="author" content="Chun-Hui Gao" />
 
 
-<meta name="date" content="2021-03-10" />
+<meta name="date" content="2021-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,6 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#adding-note"><i class="fa fa-check"></i><b>3.2</b> Adding note</a></li>
 <li class="chapter" data-level="3.3" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#axis-expansion"><i class="fa fa-check"></i><b>3.3</b> Axis expansion</a></li>
 <li class="chapter" data-level="3.4" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#show-intersection-values"><i class="fa fa-check"></i><b>3.4</b> Show intersection values</a></li>
+<li class="chapter" data-level="3.5" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#comprehensive-customization-by-using-helper-functions"><i class="fa fa-check"></i><b>3.5</b> Comprehensive customization by using helper functions</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a>
 <ul>
@@ -207,9 +208,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> Predefined <code>sysdata</code> in <code>venn</code></h2>
 <p><code>venn::venn()</code> support Venn diagram up to 7 sets.</p>
 <p>It use predefined values to plot polygons.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="methods.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb32-2"><a href="methods.html#cb32-2" aria-hidden="true" tabindex="-1"></a>sets <span class="ot">&lt;-</span> venn<span class="sc">:::</span>sets</span>
-<span id="cb32-3"><a href="methods.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sets)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="methods.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb43-2"><a href="methods.html#cb43-2" aria-hidden="true" tabindex="-1"></a>sets <span class="ot">&lt;-</span> venn<span class="sc">:::</span>sets</span>
+<span id="cb43-3"><a href="methods.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sets)</span></code></pre></div>
 <pre><code>## Rows: 9,536
 ## Columns: 5
 ## $ s &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
@@ -222,25 +223,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>v: whether it is for ellipse;</li>
 <li>n: No. of polygons;</li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="methods.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb34-2"><a href="methods.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sets, <span class="fu">aes</span>(x,y)) <span class="sc">+</span> </span>
-<span id="cb34-3"><a href="methods.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">factor</span>(n)),<span class="at">alpha=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> </span>
-<span id="cb34-4"><a href="methods.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(v<span class="sc">~</span>s) <span class="sc">+</span> </span>
-<span id="cb34-5"><a href="methods.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb34-6"><a href="methods.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb34-7"><a href="methods.html#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="methods.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb45-2"><a href="methods.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sets, <span class="fu">aes</span>(x,y)) <span class="sc">+</span> </span>
+<span id="cb45-3"><a href="methods.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">factor</span>(n)),<span class="at">alpha=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb45-4"><a href="methods.html#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(v<span class="sc">~</span>s) <span class="sc">+</span> </span>
+<span id="cb45-5"><a href="methods.html#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb45-6"><a href="methods.html#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb45-7"><a href="methods.html#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-37-1.png" width="576" /></p>
 </div>
 <div id="set-operation-in-rvenn" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Set operation in <code>RVenn</code></h2>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="methods.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb35-2"><a href="methods.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVenn)</span>
-<span id="cb35-3"><a href="methods.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb35-4"><a href="methods.html#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="methods.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb35-6"><a href="methods.html#cb35-6" aria-hidden="true" tabindex="-1"></a>toy <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="fu">sample</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb35-7"><a href="methods.html#cb35-7" aria-hidden="true" tabindex="-1"></a>          <span class="cf">function</span>(x) <span class="fu">sort</span>(<span class="fu">sample</span>(letters, <span class="at">size =</span> x)))</span>
-<span id="cb35-8"><a href="methods.html#cb35-8" aria-hidden="true" tabindex="-1"></a>toy[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="methods.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb46-2"><a href="methods.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVenn)</span>
+<span id="cb46-3"><a href="methods.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb46-4"><a href="methods.html#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="methods.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb46-6"><a href="methods.html#cb46-6" aria-hidden="true" tabindex="-1"></a>toy <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="fu">sample</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb46-7"><a href="methods.html#cb46-7" aria-hidden="true" tabindex="-1"></a>          <span class="cf">function</span>(x) <span class="fu">sort</span>(<span class="fu">sample</span>(letters, <span class="at">size =</span> x)))</span>
+<span id="cb46-8"><a href="methods.html#cb46-8" aria-hidden="true" tabindex="-1"></a>toy[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [[1]]
 ##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;v&quot; &quot;x&quot;
 ## [20] &quot;y&quot; &quot;z&quot;
@@ -251,8 +252,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [[3]]
 ## [1] &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;r&quot;</code></pre>
 <p>Construct the Venn object</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="methods.html#cb37-1" aria-hidden="true" tabindex="-1"></a>toy <span class="ot">&lt;-</span> <span class="fu">Venn</span>(toy)</span>
-<span id="cb37-2"><a href="methods.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(toy)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="methods.html#cb48-1" aria-hidden="true" tabindex="-1"></a>toy <span class="ot">&lt;-</span> <span class="fu">Venn</span>(toy)</span>
+<span id="cb48-2"><a href="methods.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(toy)</span></code></pre></div>
 <pre><code>## Formal class &#39;Venn&#39; [package &quot;RVenn&quot;] with 2 slots
 ##   ..@ sets :List of 10
 ##   .. ..$ Set_1 : chr [1:21] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; ...
@@ -271,30 +272,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Intersection</strong></li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="methods.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intersection</span></span>
-<span id="cb39-2"><a href="methods.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="methods.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intersection</span></span>
+<span id="cb50-2"><a href="methods.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy)</span></code></pre></div>
 <pre><code>## character(0)</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="methods.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy, <span class="at">slice =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="methods.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy, <span class="at">slice =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;d&quot; &quot;r&quot;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="methods.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy, <span class="at">slice =</span> <span class="fu">c</span>(<span class="st">&quot;Set_1&quot;</span>,<span class="st">&quot;Set_2&quot;</span>,<span class="st">&quot;Set_5&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="methods.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy, <span class="at">slice =</span> <span class="fu">c</span>(<span class="st">&quot;Set_1&quot;</span>,<span class="st">&quot;Set_2&quot;</span>,<span class="st">&quot;Set_5&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;d&quot; &quot;h&quot; &quot;m&quot;</code></pre>
 <ul>
 <li><strong>Union</strong></li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="methods.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unite</span>(toy) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="methods.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unite</span>(toy) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
 <pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
 ## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="methods.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unite</span>(toy, <span class="at">slice =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="methods.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unite</span>(toy, <span class="at">slice =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
 <pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot;
 ## [20] &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <ul>
 <li><strong>Set difference</strong></li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="methods.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="methods.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
 <pre><code>##  [1] &quot;a&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;w&quot; &quot;x&quot; &quot;z&quot;</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="methods.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span>, <span class="at">slice2 =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="methods.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span>, <span class="at">slice2 =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
 <pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;e&quot; &quot;i&quot; &quot;j&quot; &quot;n&quot; &quot;p&quot; &quot;q&quot; &quot;s&quot; &quot;t&quot; &quot;y&quot; &quot;z&quot;</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="methods.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">slice2 =</span> <span class="dv">8</span><span class="sc">:</span><span class="dv">9</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="methods.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">slice2 =</span> <span class="dv">8</span><span class="sc">:</span><span class="dv">9</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;d&quot;</code></pre>
 
 </div>

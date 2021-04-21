@@ -92,9 +92,13 @@ functions. See below for a better understanding.
 venn <- Venn(gene_list)
 data <- process_data(venn)
 ggplot() +
+  # 1. region count layer
   geom_sf(aes(fill = count), data = data@region) +
+  # 2. set edge layer
   geom_sf(aes(color = id), data = data@setEdge, show.legend = FALSE) +
+  # 3. set label layer
   geom_sf_text(aes(label = name), data = data@setLabel) +
+  # 4. region label layer
   geom_sf_label(aes(label = count), data = data@region) +
   theme_void()
 ```
@@ -105,10 +109,14 @@ For example, you may change edge/fill/label properties as you will.
 
 ```{r}
 ggplot() +
-  geom_sf(aes(fill = id), data = data@region, show.legend = FALSE) +  # mapping of fill
-  geom_sf(color="grey", size = 3, data = data@setEdge, show.legend = FALSE) +  # edge size and color
-  geom_sf_text(aes(label = name), data = data@setLabel) +  # add set label
-  geom_sf_label(aes(label = name), data = data@region, alpha = 0.5) +  # add region name
+  # change mapping of color filling
+  geom_sf(aes(fill = id), data = data@region, show.legend = FALSE) +  
+  # adjust edge size and color
+  geom_sf(color="grey", size = 3, data = data@setEdge, show.legend = FALSE) +  
+  # show set label in bold
+  geom_sf_text(aes(label = name), fontface = "bold", data = data@setLabel) +  
+  # add a alternative region name
+  geom_sf_label(aes(label = name), data = data@region, alpha = 0.5) +  
   theme_void()
 ```
 
