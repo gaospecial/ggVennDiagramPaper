@@ -16,14 +16,29 @@ p <- ggVennDiagram(gene_list)
 
 ## Changing palette
 
+- changing fill palette
+
 ```{r}
 library(ggplot2)
+
+# Red Blue
 p + scale_fill_distiller(palette = "RdBu")
+
+# Reds
+p + scale_fill_distiller(palette = "Reds", direction = 1)
 ```
+
+
+- change edge colors
+
+```{r}
+p + scale_color_brewer(palette = "Set1")
+```
+
 
 Some other palletes are:
 
-```{r fig.asp=1.5}
+```{r fig.asp=2, fig.width=4}
 RColorBrewer::display.brewer.all()
 ```
 
@@ -43,6 +58,8 @@ p + labs(title = "Four sets Venn Diagram",
 p1 <- ggVennDiagram(gene_list, 
                     category.names = c("a very long name","short name","name","another name"))
 p1
+
+# expand axis to show long set labels
 p1 + scale_x_continuous(expand = expansion(mult = .2))
 ```
 
@@ -56,25 +73,44 @@ small_list <- lapply(sample(5:10, replace = TRUE, size = 4), function(x){
   sample(letters,x)
 })
 
-get_region_items(small_list)
-
-p1 <- ggVennDiagram(small_list, 
+ggVennDiagram(small_list, 
                     category.names = LETTERS[1:4], 
-                    show_intersect = TRUE,
-                    label = NULL)
-plotly::ggplotly(p1)
+                    show_intersect = TRUE)
+```
+
+## Comprehensive customization by using helper functions
+
+The main function `ggVennDiagram()` accepts a list input, and output a ggplot object. By measuring the length of input list, it automatically applies internal functions to build a plot in two steps: data preparation and visualization. 
+
+Data preparation was packaged into one function `process_data()`. Its output
+is a S4 `VennPlotData` class object, which contains three slots, `setEdge`, 
+`setLabel` and `region`. These slot data can be further plotted with `ggplot` 
+functions. See below for a better understanding.
+
+
+```{r}
+venn <- Venn(gene_list)
+data <- process_data(venn)
+ggplot() +
+  geom_sf(aes(fill = count), data = data@region) +
+  geom_sf(aes(color = id), data = data@setEdge, show.legend = FALSE) +
+  geom_sf_text(aes(label = name), data = data@setLabel) +
+  geom_sf_label(aes(label = count), data = data@region) +
+  theme_void()
+```
+
+`ggVennDiagram` export multiple functions, and they can be used for comprehensive customization.
+
+For example, you may change edge/fill/label properties as you will.
+
+```{r}
+ggplot() +
+  geom_sf(aes(fill = id), data = data@region, show.legend = FALSE) +  # mapping of fill
+  geom_sf(color="grey", size = 3, data = data@setEdge, show.legend = FALSE) +  # edge size and color
+  geom_sf_text(aes(label = name), data = data@setLabel) +  # add set label
+  geom_sf_label(aes(label = name), data = data@region, alpha = 0.5) +  # add region name
+  theme_void()
 ```
 
 
-```{r eval=FALSE}
-g <- ggplotGrob(p)
-ng <- grid.ls(grid.force(g),print = FALSE)$name
-txt <- ng[which(grepl("text",ng))]
-cols <- sample(colors(),length(txt))
-plots <- lapply(seq_along(txt),function(i){
-  editGrob(grid.force(g),gPath(txt[i]),grep = T,
-           gp=gpar(col=cols[i]))
-})
-cowplot::plot_grid(plotlist = plots)
-```
 

@@ -9,17 +9,48 @@ gene_list <- list(A = sample(genes,100),
                   B = sample(genes,200),
                   C = sample(genes,300),
                   D = sample(genes,200))
+library(dplyr)
 ```
 
 ## `VennDiagram`
 
-[@R-VennDiagram]
+`VennDiagram` [@R-VennDiagram] is currently the most popular Venn plot tool in R environment.
 
 ```{r}
 library(VennDiagram)
 VennDiagram <- venn.diagram(x = gene_list, filename = NULL)
 cowplot::plot_grid(VennDiagram)
 ```
+
+It provide basic functions to draw Euler plot.
+
+```{r}
+venn.plot <- draw.triple.venn(
+	area1 = 65,
+	area2 = 75,
+	area3 = 85,
+	n12 = 35,
+	n23 = 15,
+	n13 = 25,
+	n123 = 5,
+	category = c("First", "Second", "Third"),
+	fill = c("blue", "red", "green"),
+	lty = "blank",
+	cex = 2,
+	cat.cex = 2,
+	cat.col = c("blue", "red", "green"),
+	euler.d = TRUE
+	)
+cowplot::plot_grid(venn.plot)
+```
+
+helper function to get Venn partitions.
+
+```{r}
+get.venn.partitions(gene_list) %>% dplyr::as_tibble()
+```
+
+
 
 ```{r include=FALSE}
 # delete log file
@@ -61,9 +92,10 @@ venn(gene_list)
 venn(x = gene_list, ellipse = TRUE)
 ```
 
+
 `venn` support `ggplot`, but it depends on `ggpolypath`, which is not popular.
 
-```{r eval=FALSE}
+```{r}
 venn::venn(gene_list, ellipse = TRUE, ggplot = TRUE)
 ```
 
@@ -81,6 +113,22 @@ venn::venn(6)
 ```{r}
 venn::venn(7)
 ```
+
+`venn` accepts multiple format of input. 
+
+```{r}
+intersections <- c('~A~B~C~D', '~A~B~CD', '~A~BC~D', '~A~BCD', '~AB~C~D', '~AB~CD', '~ABC~D', '~ABCD', 'A~B~C~D', 'A~B~CD', 'A~BC~D', 'A~BCD', 'AB~C~D', 'AB~CD', 'ABC~D', 'ABCD')
+venn(intersections, zcol = colors()[sample(1:657, 16)])
+
+venn("A*D, A*B*~C + B*C*~D", zcol = c("blue", "red"))
+
+venn("AD, AB~C + BC~D", zcol = c("blue", "red"))
+
+venn("1-----")
+venn("100 + 110 + 101 + 111")
+```
+
+
 
 ## `nVennR`
 
@@ -117,13 +165,40 @@ euler_plot <- euler(gene_list)
 plot(euler_plot)
 ```
 
+
+At the time of March 9th, 2021, it is possible to provide input to eulerr as either
+
+a named numeric vector with set combinations as disjoint set combinations or unions (depending on how the argument type is set in euler()),
+a matrix or data frame of logicals with columns representing sets and rows the set relationships for each observation,
+a list of sample spaces, or
+a table.
+
+```{r}
+# Input as a matrix of logicals
+set.seed(1)
+mat <- cbind(
+  A = sample(c(TRUE, TRUE, FALSE), 50, TRUE),
+  B = sample(c(TRUE, FALSE), 50, TRUE),
+  C = sample(c(TRUE, FALSE, FALSE, FALSE), 50, TRUE)
+)
+(fit2 <- euler(mat))
+```
+
+The diagnose function is good.
+
+```{r}
+error_plot(fit2)
+```
+
+
+
 ## `venneuler`
 
 [@R-venneuler]
 
 `venneulerr` depends on JAVA runtime environment, which makes its installation is unbearable for non-JAVA users.
 
-Besides, its
+Besides, it only has one exported function, which doesn't support list input.
 
 ```{r}
 library(venneuler)
@@ -140,7 +215,8 @@ plot(vd)
 
 The functions overlap, unite and discern abstract away the details, so one can just construct the universe and choose the sets to operate by index or set name.
 
-`RVenn` provide a `ggvenn()` function to draw 2-3 sets Venn diagram.
+`RVenn` provide a `ggvenn()` function to draw 2-3 sets Venn diagram. In this case, 
+its advantages are mostly rely on set operation functions. 
 
 ```{r}
 library(RVenn)

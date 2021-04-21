@@ -11,7 +11,8 @@ description: "This is a minimal example of using the bookdown package to write a
 ---
 
 ```{r echo=FALSE}
-knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(message = FALSE,
+                      fig.width = 6)
 Sys.setenv(LANGUAGE = "en") # 显示英文报错信息
 ```
 
