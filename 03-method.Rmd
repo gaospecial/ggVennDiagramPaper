@@ -1,5 +1,10 @@
 # Methods
 
+`ggVennDiagram` is built on the shoulder of the other related R packages.
+Except for `ggplot2`, it also depends on the functions in `dplyr`, `tibble`, `sf`, and so on.
+Besides, the design of `ggVennDiagram` version 1.0 is inspired by two packages,
+`venn` and `RVenn`.
+
 ## Predefined `sysdata` in `venn`
 
 `venn::venn()` support Venn diagram up to 7 sets.
@@ -16,6 +21,11 @@ glimpse(sets)
 - v: whether it is for ellipse;
 - n: No. of polygons;
 
+The following is a visualization of `venn` predefined polygons. 
+These polygons can't be generated using simple functions, but are painstaking manual work 
+that took years to create. I have communicated with the author of `venn`, Prof. Adrian Dușa, 
+and get his consent to reuse these data.
+
 
 ```{r}
 library(ggplot2)
@@ -27,25 +37,42 @@ ggplot(sets, aes(x,y)) +
   theme(legend.position = "none")
 ```
 
+In `ggVennDiagram`, we also store a predefined shapes in `sysdata`, and this 
+will no doubt improve shape generations in user-side.
+You may navigate the shape data with `get_shape_data()` function.
+
+```{r}
+ggVennDiagram::get_shape_data(4)
+```
+
+or plot them with `plot_shapes()`.
+
+```{r}
+ggVennDiagram::plot_shapes()
+```
+
+
 ## Set operation in `RVenn`
+
+`RVenn` defines a S4 class object `Venn` to store members of Venn sets.
 
 ```{r}
 library(purrr)
 library(RVenn)
 library(ggplot2)
-
-set.seed(42)
-toy <- map(sample(5:25, replace = FALSE, size = 10),
-          function(x) sort(sample(letters, size = x)))
-toy[1:3]
+ggVennDiagram(gene_list)
 ```
 
-Construct the Venn object
+Construct the Venn object.
 
 ```{r}
-toy <- Venn(toy)
+toy <- Venn(gene_list)
 glimpse(toy)
 ```
+
+On this basis, it implements methods to calculate the intersection/overlapping/union 
+of different sets. 
+
 
 ### Set operations in `RVenn`
 
@@ -55,21 +82,39 @@ glimpse(toy)
 # intersection
 overlap(toy)
 overlap(toy, slice = 1:3)
-overlap(toy, slice = c("Set_1","Set_2","Set_5"))
+overlap(toy, slice = c("A","B","C"))
 ```
 
 - **Union**
 
 ```{r}
 unite(toy) %>% sort()
-unite(toy, slice = 1:3) %>% sort()
 ```
 
 - **Set difference**
 
 ```{r}
-discern(toy, slice1 = 1:9) %>% sort()
-discern(toy, slice1 = 1, slice2 = 2) %>% sort()
-discern(toy, slice1 = 1:7, slice2 = 8:9) %>% sort()
+discern(toy, slice1 = 1:3) %>% sort()
+discern(toy, slice1 = 1:2, slice2 = 3:4) %>% sort()
 ```
+
+In `ggVennDiagram`, region value calculation depends on the `RVenn` package and 
+new functions written on its defined Venn object. 
+There are totally $2^n–1$ regions in a Venn diagram, in which $n$ is the number of sets. 
+We developed `discern_overlap()` to calculate the members of every Venn regions.
+By default, it will return the intersection of all the sets, which only contains one gene here.
+
+
+```{r}
+discern_overlap(toy)
+discern_overlap(toy, slice = 1:2)
+```
+
+We construct a `Polygon` object that inherits `Venn` to store shape data.
+And expanded `discern_overlap()` method to calculate region shapes.
+After calculation, the member and count of each region are stored with region ids in a tibble, 
+and then joined with the region shape object by unique ids. Likewise, 
+the member and count of sets are assigned to the `SetEdge` by unique ids in parallel.  
+By doing this, a complete `VennPlotData` object is finished and can be used for plotting.
+
 

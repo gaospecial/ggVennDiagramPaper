@@ -11,3 +11,6 @@ Many R packages support Venn diagram.
 and `ggVennDiagram`.
 
 Why choose `ggVennDiagram`?
+
+This book is originally for notes in the development of `ggVennDiagram`.
+And it may be used as a Venn plot gallery in R environment.

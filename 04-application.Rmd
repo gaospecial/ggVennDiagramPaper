@@ -1,7 +1,20 @@
-# Applications
+# Applications of Venn, Euler and Upset plot
 
-Some _significant_ applications are demonstrated in this chapter.
 
-## Example one
+To date, there are three major methods to display set relationships, Venn diagram, 
+Euler diagram and UpSet plot [@conwayUpSetRPackageVisualization2017]. The UpSet 
+plot is a state-of-art visualization technique for the quantitative analysis of sets [@lexUpSetVisualizationIntersecting2014], and support unlimited number of sets. 
+When the number of sets is very large, UpSet plot is more reasonable be choose. 
+By contrast, Venn and Euler are both traditional approaches to finish this task. 
+Euler diagram is area-proportional, and only show relevant relationships. Since 
+human eye is less sensitive to area than to color, we believe that using color 
+filling to show the difference between different regions is more suitable for 
+ordinary biomedical studies.
 
-## Example two
+If we apply `gene_list` to `upset()`, it will get:
+
+```{r}
+library(UpSetR)
+upset(fromList(gene_list))
+```
+

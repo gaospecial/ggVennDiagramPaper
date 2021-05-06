@@ -54,6 +54,9 @@ p + labs(title = "Four sets Venn Diagram",
 
 ## Axis expansion
 
+If you use long category names in Venn plot, labels may be croped by plot borders.
+To avoid this, just use a ggplot trick to expand x axis.
+
 ```{r}
 p1 <- ggVennDiagram(gene_list, 
                     category.names = c("a very long name","short name","name","another name"))
@@ -69,7 +72,7 @@ When intersection values only have several members, `ggVennDiagram` is efficient
 
 ```{r}
 set.seed(0)
-small_list <- lapply(sample(5:10, replace = TRUE, size = 4), function(x){
+small_list <- lapply(sample(6:10, size = 4), function(x){
   sample(letters,x)
 })
 
@@ -93,13 +96,13 @@ venn <- Venn(gene_list)
 data <- process_data(venn)
 ggplot() +
   # 1. region count layer
-  geom_sf(aes(fill = count), data = data@region) +
+  geom_sf(aes(fill = count), data = venn_region(data)) +
   # 2. set edge layer
-  geom_sf(aes(color = id), data = data@setEdge, show.legend = FALSE) +
+  geom_sf(aes(color = id), data = venn_setedge(data), show.legend = FALSE) +
   # 3. set label layer
-  geom_sf_text(aes(label = name), data = data@setLabel) +
+  geom_sf_text(aes(label = name), data = venn_setlabel(data)) +
   # 4. region label layer
-  geom_sf_label(aes(label = count), data = data@region) +
+  geom_sf_label(aes(label = count), data = venn_region(data)) +
   theme_void()
 ```
 
@@ -110,13 +113,13 @@ For example, you may change edge/fill/label properties as you will.
 ```{r}
 ggplot() +
   # change mapping of color filling
-  geom_sf(aes(fill = id), data = data@region, show.legend = FALSE) +  
+  geom_sf(aes(fill = id), data = venn_region(data), show.legend = FALSE) +  
   # adjust edge size and color
-  geom_sf(color="grey", size = 3, data = data@setEdge, show.legend = FALSE) +  
+  geom_sf(color="grey", size = 3, data = venn_setedge(data), show.legend = FALSE) +  
   # show set label in bold
-  geom_sf_text(aes(label = name), fontface = "bold", data = data@setLabel) +  
+  geom_sf_text(aes(label = name), fontface = "bold", data = venn_setlabel(data)) +  
   # add a alternative region name
-  geom_sf_label(aes(label = name), data = data@region, alpha = 0.5) +  
+  geom_sf_label(aes(label = name), data = venn_region(data), alpha = 0.5) +  
   theme_void()
 ```
 

@@ -1,3 +1,19 @@
-# Final Words
+# Conclusion
 
-We have finished a nice book.
+Venn diagrams are widely-used diagrams to show the intersection values in biomedical studies. 
+Despite several tools exist to draw Venn diagram in the R environment, the demand for a 
+better one is unlimited. In this context, we developed `ggVennDiagram`, an R package that 
+enable the automated Venn diagram generation in publication quality. 
+
+`ggVennDiagram` is built with the merits of ggplot2, and integrates the advantages of 
+existing packages such as `VennDiagram`, `RVenn`, `venn`, and `sf`. As a result, 
+`ggVennDiagram` not only develops the method of plotting a Venn diagram, but also 
+designs a comprehensive object that stores the complete data for a Venn diagram. 
+
+`ggVennDiagram` is currently support 2-7 sets Venn diagram. Satisfactory results can 
+be obtained with minimal configurations. However, it also provides highly customizable 
+drawing method without increasing the cost of learning. 
+
+The package is an open-source software that released under the GPL-3 license, and it is 
+freely available through CRAN (https://cran.r-project.org/package=ggVennDiagram) or 
+GitHub (https://github.com/gaospecial/ggVennDiagram).
