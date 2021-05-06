@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Methods | ggVennDiagram cookbook</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <title>Chapter 4 Methods | Venn Diagram cookbook in R</title>
+  <meta name="description" content="How to draw Venn diagram with R packages." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Methods | ggVennDiagram cookbook" />
+  <meta property="og:title" content="Chapter 4 Methods | Venn Diagram cookbook in R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta property="og:description" content="How to draw Venn diagram with R packages." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Methods | ggVennDiagram cookbook" />
+  <meta name="twitter:title" content="Chapter 4 Methods | Venn Diagram cookbook in R" />
   
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:description" content="How to draw Venn diagram with R packages." />
   
 
 <meta name="author" content="Chun-Hui Gao" />
@@ -188,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ggVennDiagram cookbook</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Venn Diagram cookbook in R</a>
           </h1>
         </div>
 
@@ -232,7 +232,7 @@ and get his consent to reuse these data.</p>
 <span id="cb47-5"><a href="methods.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
 <span id="cb47-6"><a href="methods.html#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
 <span id="cb47-7"><a href="methods.html#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-37-1.png" width="576" /></p>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-37-1.png" width="90%" /></p>
 <p>In <code>ggVennDiagram</code>, we also store a predefined shapes in <code>sysdata</code>, and this
 will no doubt improve shape generations in user-side.
 You may navigate the shape data with <code>get_shape_data()</code> function.</p>
@@ -250,7 +250,7 @@ You may navigate the shape data with <code>get_shape_data()</code> function.</p>
 ## 8     4 ellipse 401f     setLabel  4     &lt;dbl[,2] [1 x 2]&gt;</code></pre>
 <p>or plot them with <code>plot_shapes()</code>.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="methods.html#cb50-1" aria-hidden="true" tabindex="-1"></a>ggVennDiagram<span class="sc">::</span><span class="fu">plot_shapes</span>()</span></code></pre></div>
-<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-39-1.png" width="576" /></p>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-39-1.png" width="90%" /></p>
 </div>
 <div id="set-operation-in-rvenn" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Set operation in <code>RVenn</code></h2>
@@ -259,7 +259,7 @@ You may navigate the shape data with <code>get_shape_data()</code> function.</p>
 <span id="cb51-2"><a href="methods.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVenn)</span>
 <span id="cb51-3"><a href="methods.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb51-4"><a href="methods.html#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(gene_list)</span></code></pre></div>
-<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-40-1.png" width="576" /></p>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-40-1.png" width="90%" /></p>
 <p>Construct the Venn object.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="methods.html#cb52-1" aria-hidden="true" tabindex="-1"></a>toy <span class="ot">&lt;-</span> <span class="fu">Venn</span>(gene_list)</span>
 <span id="cb52-2"><a href="methods.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(toy)</span></code></pre></div>
