@@ -1,5 +1,5 @@
 --- 
-title: "ggVennDiagram cookbook"
+title: "Venn Diagram cookbook in R"
 author: "Chun-Hui Gao"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -7,12 +7,13 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+description: "How to draw Venn diagram with R packages."
 ---
 
 ```{r echo=FALSE}
 knitr::opts_chunk$set(message = FALSE,
-                      fig.width = 6)
+                      fig.width = 6,
+                      out.width = "90%")
 Sys.setenv(LANGUAGE = "en") # 显示英文报错信息
 ```
 
