@@ -21,7 +21,5 @@ methods
 predefined-sysdata-in-venn
 set-operation-in-rvenn
 set-operations-in-rvenn
-applications
-example-one
-example-two
-final-words
+applications-of-venn-euler-and-upset-plot
+conclusion

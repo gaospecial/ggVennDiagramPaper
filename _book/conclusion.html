@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Applications | ggVennDiagram cookbook</title>
+  <title>Chapter 6 Conclusion | ggVennDiagram cookbook</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Applications | ggVennDiagram cookbook" />
+  <meta property="og:title" content="Chapter 6 Conclusion | ggVennDiagram cookbook" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Applications | ggVennDiagram cookbook" />
+  <meta name="twitter:title" content="Chapter 6 Conclusion | ggVennDiagram cookbook" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -24,16 +24,16 @@
 <meta name="author" content="Chun-Hui Gao" />
 
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2021-05-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="methods.html"/>
-<link rel="next" href="final-words.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<link rel="prev" href="applications-of-venn-euler-and-upset-plot.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -175,12 +173,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#set-operations-in-rvenn"><i class="fa fa-check"></i><b>4.2.1</b> Set operations in <code>RVenn</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="5" data-path="applications-of-venn-euler-and-upset-plot.html"><a href="applications-of-venn-euler-and-upset-plot.html"><i class="fa fa-check"></i><b>5</b> Applications of Venn, Euler and Upset plot</a></li>
+<li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -202,24 +196,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="applications" class="section level1" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Applications</h1>
-<p>Some <em>significant</em> applications are demonstrated in this chapter.</p>
-<div id="example-one" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Example one</h2>
-</div>
-<div id="example-two" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Example two</h2>
+<div id="conclusion" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Conclusion</h1>
+<p>Venn diagrams are widely-used diagrams to show the intersection values in biomedical studies.
+Despite several tools exist to draw Venn diagram in the R environment, the demand for a
+better one is unlimited. In this context, we developed <code>ggVennDiagram</code>, an R package that
+enable the automated Venn diagram generation in publication quality.</p>
+<p><code>ggVennDiagram</code> is built with the merits of ggplot2, and integrates the advantages of
+existing packages such as <code>VennDiagram</code>, <code>RVenn</code>, <code>venn</code>, and <code>sf</code>. As a result,
+<code>ggVennDiagram</code> not only develops the method of plotting a Venn diagram, but also
+designs a comprehensive object that stores the complete data for a Venn diagram.</p>
+<p><code>ggVennDiagram</code> is currently support 2-7 sets Venn diagram. Satisfactory results can
+be obtained with minimal configurations. However, it also provides highly customizable
+drawing method without increasing the cost of learning.</p>
+<p>The package is an open-source software that released under the GPL-3 license, and it is
+freely available through CRAN (<a href="https://cran.r-project.org/package=ggVennDiagram" class="uri">https://cran.r-project.org/package=ggVennDiagram</a>) or
+GitHub (<a href="https://github.com/gaospecial/ggVennDiagram" class="uri">https://github.com/gaospecial/ggVennDiagram</a>).</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="applications-of-venn-euler-and-upset-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

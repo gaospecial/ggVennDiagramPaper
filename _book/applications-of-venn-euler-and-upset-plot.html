@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Final Words | ggVennDiagram cookbook</title>
+  <title>Chapter 5 Applications of Venn, Euler and Upset plot | ggVennDiagram cookbook</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Final Words | ggVennDiagram cookbook" />
+  <meta property="og:title" content="Chapter 5 Applications of Venn, Euler and Upset plot | ggVennDiagram cookbook" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Final Words | ggVennDiagram cookbook" />
+  <meta name="twitter:title" content="Chapter 5 Applications of Venn, Euler and Upset plot | ggVennDiagram cookbook" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -24,16 +24,16 @@
 <meta name="author" content="Chun-Hui Gao" />
 
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2021-05-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="applications.html"/>
-<link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<link rel="prev" href="methods.html"/>
+<link rel="next" href="conclusion.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -175,12 +173,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#set-operations-in-rvenn"><i class="fa fa-check"></i><b>4.2.1</b> Set operations in <code>RVenn</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="5" data-path="applications-of-venn-euler-and-upset-plot.html"><a href="applications-of-venn-euler-and-upset-plot.html"><i class="fa fa-check"></i><b>5</b> Applications of Venn, Euler and Upset plot</a></li>
+<li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -202,9 +196,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="final-words" class="section level1" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Final Words</h1>
-<p>We have finished a nice book.</p>
+<div id="applications-of-venn-euler-and-upset-plot" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Applications of Venn, Euler and Upset plot</h1>
+<p>To date, there are three major methods to display set relationships, Venn diagram,
+Euler diagram and UpSet plot <span class="citation">(<a href="references.html#ref-conwayUpSetRPackageVisualization2017" role="doc-biblioref">Conway, Lex, and Gehlenborg 2017</a>)</span>. The UpSet
+plot is a state-of-art visualization technique for the quantitative analysis of sets <span class="citation">(<a href="references.html#ref-lexUpSetVisualizationIntersecting2014" role="doc-biblioref">Lex et al. 2014</a>)</span>, and support unlimited number of sets.
+When the number of sets is very large, UpSet plot is more reasonable be choose.
+By contrast, Venn and Euler are both traditional approaches to finish this task.
+Euler diagram is area-proportional, and only show relevant relationships. Since
+human eye is less sensitive to area than to color, we believe that using color
+filling to show the difference between different regions is more suitable for
+ordinary biomedical studies.</p>
+<p>If we apply <code>gene_list</code> to <code>upset()</code>, it will get:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="applications-of-venn-euler-and-upset-plot.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(UpSetR)</span>
+<span id="cb70-2"><a href="applications-of-venn-euler-and-upset-plot.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">upset</span>(<span class="fu">fromList</span>(gene_list))</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-46-1.png" width="576" /></p>
 
 </div>
             </section>
@@ -212,8 +218,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="applications.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
