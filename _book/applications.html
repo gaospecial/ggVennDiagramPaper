@@ -24,7 +24,7 @@
 <meta name="author" content="Chun-Hui Gao" />
 
 
-<meta name="date" content="2021-05-06" />
+<meta name="date" content="2021-05-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,9 +140,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Venn Diagram in R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#list-of-packages"><i class="fa fa-check"></i><b>1.1</b> List of packages</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sessioninfo"><i class="fa fa-check"></i><b>1.2</b> Sessioninfo</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
@@ -156,14 +156,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#rvenn"><i class="fa fa-check"></i><b>2.7</b> <code>RVenn</code></a></li>
 <li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#gplots"><i class="fa fa-check"></i><b>2.8</b> <code>gplots</code></a></li>
 <li class="chapter" data-level="2.9" data-path="intro.html"><a href="intro.html#ggvenndiagram"><i class="fa fa-check"></i><b>2.9</b> <code>ggVennDiagram</code></a></li>
+<li class="chapter" data-level="2.10" data-path="intro.html"><a href="intro.html#ggvenn"><i class="fa fa-check"></i><b>2.10</b> <code>ggvenn</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html"><i class="fa fa-check"></i><b>3</b> Using <code>ggVennDiagram</code></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#changing-palette"><i class="fa fa-check"></i><b>3.1</b> Changing palette</a></li>
-<li class="chapter" data-level="3.2" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#adding-note"><i class="fa fa-check"></i><b>3.2</b> Adding note</a></li>
-<li class="chapter" data-level="3.3" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#axis-expansion"><i class="fa fa-check"></i><b>3.3</b> Axis expansion</a></li>
-<li class="chapter" data-level="3.4" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#show-intersection-values"><i class="fa fa-check"></i><b>3.4</b> Show intersection values</a></li>
-<li class="chapter" data-level="3.5" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#comprehensive-customization-by-using-helper-functions"><i class="fa fa-check"></i><b>3.5</b> Comprehensive customization by using helper functions</a></li>
+<li class="chapter" data-level="3.1" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#long-category-names"><i class="fa fa-check"></i><b>3.1</b> long category names</a></li>
+<li class="chapter" data-level="3.2" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#show-intersection-values"><i class="fa fa-check"></i><b>3.2</b> Show intersection values</a></li>
+<li class="chapter" data-level="3.3" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#setting-set-label"><i class="fa fa-check"></i><b>3.3</b> Setting set label</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#color-of-set-label"><i class="fa fa-check"></i><b>3.3.1</b> color of set label</a></li>
+<li class="chapter" data-level="3.3.2" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#size-of-set-labels"><i class="fa fa-check"></i><b>3.3.2</b> size of set labels</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#setting-region-label"><i class="fa fa-check"></i><b>3.4</b> Setting region label</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#text-content"><i class="fa fa-check"></i><b>3.4.1</b> text content</a></li>
+<li class="chapter" data-level="3.4.2" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#percentage-digits"><i class="fa fa-check"></i><b>3.4.2</b> percentage digits</a></li>
+<li class="chapter" data-level="3.4.3" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#remove-label-background"><i class="fa fa-check"></i><b>3.4.3</b> remove label background</a></li>
+<li class="chapter" data-level="3.4.4" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#color-and-size"><i class="fa fa-check"></i><b>3.4.4</b> color and size</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#setting-set-edges"><i class="fa fa-check"></i><b>3.5</b> Setting set edges</a></li>
+<li class="chapter" data-level="3.6" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#changing-palette"><i class="fa fa-check"></i><b>3.6</b> Changing palette</a></li>
+<li class="chapter" data-level="3.7" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#adding-note"><i class="fa fa-check"></i><b>3.7</b> Adding note</a></li>
+<li class="chapter" data-level="3.8" data-path="using-ggVennDiagram.html"><a href="using-ggVennDiagram.html#comprehensive-customization-by-using-helper-functions"><i class="fa fa-check"></i><b>3.8</b> Comprehensive customization by using helper functions</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a>
 <ul>
@@ -173,7 +187,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#set-operations-in-rvenn"><i class="fa fa-check"></i><b>4.2.1</b> Set operations in <code>RVenn</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="applications-of-venn-euler-and-upset-plot.html"><a href="applications-of-venn-euler-and-upset-plot.html"><i class="fa fa-check"></i><b>5</b> Applications of Venn, Euler and Upset plot</a></li>
+<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications of Venn, Euler and Upset plot</a></li>
 <li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -196,21 +210,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="applications-of-venn-euler-and-upset-plot" class="section level1" number="5">
+<div id="applications" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Applications of Venn, Euler and Upset plot</h1>
 <p>To date, there are three major methods to display set relationships, Venn diagram,
 Euler diagram and UpSet plot <span class="citation">(<a href="references.html#ref-conwayUpSetRPackageVisualization2017" role="doc-biblioref">Conway, Lex, and Gehlenborg 2017</a>)</span>. The UpSet
-plot is a state-of-art visualization technique for the quantitative analysis of sets <span class="citation">(<a href="references.html#ref-lexUpSetVisualizationIntersecting2014" role="doc-biblioref">Lex et al. 2014</a>)</span>, and support unlimited number of sets.
-When the number of sets is very large, UpSet plot is more reasonable be choose.
+plot is a state-of-art visualization technique for the quantitative analysis of sets <span class="citation">(<a href="references.html#ref-lexUpSetVisualizationIntersecting2014" role="doc-biblioref">Lex et al. 2014</a>)</span>, and support unlimited number of sets.</p>
+<p>When the number of sets is very large, UpSet plot is more reasonable be choose.
 By contrast, Venn and Euler are both traditional approaches to finish this task.
-Euler diagram is area-proportional, and only show relevant relationships. Since
-human eye is less sensitive to area than to color, we believe that using color
+Euler diagram is area-proportional, and only show relevant relationships.</p>
+<p>Since human eye is less sensitive to area than to color, we believe that using color
 filling to show the difference between different regions is more suitable for
 ordinary biomedical studies.</p>
-<p>If we apply <code>gene_list</code> to <code>upset()</code>, it will get:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="applications-of-venn-euler-and-upset-plot.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(UpSetR)</span>
-<span id="cb70-2"><a href="applications-of-venn-euler-and-upset-plot.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">upset</span>(<span class="fu">fromList</span>(gene_list))</span></code></pre></div>
-<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-46-1.png" width="90%" /></p>
+<p>For example, <code>ggVennDiagram</code> support Venn plot up to 7 sets.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="applications.html#cb84-1" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;gene&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb84-2"><a href="applications.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20210507</span>)</span>
+<span id="cb84-3"><a href="applications.html#cb84-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="fu">sample</span>(genes,<span class="dv">100</span>),</span>
+<span id="cb84-4"><a href="applications.html#cb84-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">B =</span> <span class="fu">sample</span>(genes,<span class="dv">150</span>),</span>
+<span id="cb84-5"><a href="applications.html#cb84-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">C =</span> <span class="fu">sample</span>(genes,<span class="dv">200</span>),</span>
+<span id="cb84-6"><a href="applications.html#cb84-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">D =</span> <span class="fu">sample</span>(genes,<span class="dv">250</span>),</span>
+<span id="cb84-7"><a href="applications.html#cb84-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">E =</span> <span class="fu">sample</span>(genes,<span class="dv">300</span>),</span>
+<span id="cb84-8"><a href="applications.html#cb84-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">F =</span> <span class="fu">sample</span>(genes,<span class="dv">350</span>),</span>
+<span id="cb84-9"><a href="applications.html#cb84-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">G =</span> <span class="fu">sample</span>(genes,<span class="dv">400</span>))</span></code></pre></div>
+<p>but if we plot them, we will find it is difficult to separate the border of
+different sets in the plot (even with thick edges), especially for 7 and 6 sets Venn.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="applications.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(x, <span class="at">label =</span> <span class="st">&quot;none&quot;</span>, <span class="at">edge_size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&quot;RdBu&quot;</span>)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-57-1.png" width="90%" /></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="applications.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(x[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>], <span class="at">label =</span> <span class="st">&quot;none&quot;</span>, <span class="at">edge_size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&quot;RdBu&quot;</span>)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-57-2.png" width="90%" /></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="applications.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(x[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">label =</span> <span class="st">&quot;none&quot;</span>, <span class="at">edge_size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&quot;RdBu&quot;</span>)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-57-3.png" width="90%" /></p>
+<p>By contrast, if we apply this large <code>x</code> to <code>upset()</code>, it will get:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="applications.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(UpSetR)</span>
+<span id="cb88-2"><a href="applications.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">upset</span>(<span class="fu">fromList</span>(x), <span class="at">nsets =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-58-1.png" width="90%" /></p>
+<p>In my opinion, this plot is better to show the intersection values between them.</p>
 
 </div>
             </section>
