@@ -242,3 +242,23 @@ venn(gene_list)
 library(ggVennDiagram)
 ggVennDiagram(gene_list)
 ```
+
+
+## `ggvenn`
+
+[@R-ggvenn]
+
+```{r}
+library(ggvenn)
+ggvenn(gene_list)
+```
+`ggvenn` can show elements in polygon regions.
+
+```{r}
+a <- list(A = c("apple", "pear", "peach"),
+          B = c("apple", "lemon"))
+ggvenn(a, show_elements = TRUE)
+
+ggvenn(a, show_elements = TRUE, label_sep = "\n")  # show elements in line
+```
+

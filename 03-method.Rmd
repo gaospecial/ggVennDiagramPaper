@@ -48,7 +48,7 @@ ggVennDiagram::get_shape_data(4)
 or plot them with `plot_shapes()`.
 
 ```{r}
-ggVennDiagram::plot_shapes()
+plot_shapes() 
 ```
 
 
