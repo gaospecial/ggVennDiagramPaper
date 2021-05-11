@@ -24,7 +24,7 @@
 <meta name="author" content="Chun-Hui Gao" />
 
 
-<meta name="date" content="2021-05-07" />
+<meta name="date" content="2021-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -559,20 +559,38 @@ its advantages are mostly rely on set operation functions.</p>
 <div id="ggvenn" class="section level2" number="2.10">
 <h2><span class="header-section-number">2.10</span> <code>ggvenn</code></h2>
 <p><span class="citation">(<a href="references.html#ref-R-ggvenn" role="doc-biblioref">Yan 2021</a>)</span></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intro.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggvenn)</span></code></pre></div>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.5</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intro.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(gene_list)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intro.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggvenn)</span>
+<span id="cb33-2"><a href="intro.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(gene_list)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-27-1.png" width="90%" />
 <code>ggvenn</code> can show elements in polygon regions.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;peach&quot;</span>),</span>
-<span id="cb36-2"><a href="intro.html#cb36-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">B =</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;lemon&quot;</span>))</span>
-<span id="cb36-3"><a href="intro.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(a, <span class="at">show_elements =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;peach&quot;</span>),</span>
+<span id="cb34-2"><a href="intro.html#cb34-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">B =</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;lemon&quot;</span>))</span>
+<span id="cb34-3"><a href="intro.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(a, <span class="at">show_elements =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-28-1.png" width="90%" /></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intro.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(a, <span class="at">show_elements =</span> <span class="cn">TRUE</span>, <span class="at">label_sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)  <span class="co"># show elements in line</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intro.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(a, <span class="at">show_elements =</span> <span class="cn">TRUE</span>, <span class="at">label_sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)  <span class="co"># show elements in line</span></span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-28-2.png" width="90%" /></p>
 
 </div>
 </div>
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://venn-diagram-in-r.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </section>
 
           </div>
