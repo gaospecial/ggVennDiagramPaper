@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Methods | Venn Diagram cookbook in R</title>
   <meta name="description" content="How to draw Venn diagram with R packages." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Methods | Venn Diagram cookbook in R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Chun-Hui Gao" />
 
 
-<meta name="date" content="2021-05-11" />
+<meta name="date" content="2021-12-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="using-ggVennDiagram.html"/>
 <link rel="next" href="applications.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,14 +51,15 @@
 
 
 
-
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -122,6 +124,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -220,16 +245,16 @@ Besides, the design of <code>ggVennDiagram</code> version 1.0 is inspired by two
 <h2><span class="header-section-number">4.1</span> Predefined <code>sysdata</code> in <code>venn</code></h2>
 <p><code>venn::venn()</code> support Venn diagram up to 7 sets.</p>
 <p>It use predefined values to plot polygons.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="methods.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb57-2"><a href="methods.html#cb57-2" aria-hidden="true" tabindex="-1"></a>sets <span class="ot">&lt;-</span> venn<span class="sc">:::</span>sets</span>
-<span id="cb57-3"><a href="methods.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sets)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="methods.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb62-2"><a href="methods.html#cb62-2" aria-hidden="true" tabindex="-1"></a>sets <span class="ot">&lt;-</span> venn<span class="sc">:::</span>sets</span>
+<span id="cb62-3"><a href="methods.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sets)</span></code></pre></div>
 <pre><code>## Rows: 9,536
 ## Columns: 5
-## $ s &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-## $ v &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
-## $ n &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-## $ x &lt;dbl&gt; 500.000, 493.573, 487.185, 480.838, 474.533, 468.273, 462.059, 45...
-## $ y &lt;dbl&gt; 750.000, 749.918, 749.673, 749.267, 748.703, 747.982, 747.106, 74...</code></pre>
+## $ s &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+## $ v &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,~
+## $ n &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+## $ x &lt;dbl&gt; 500.000, 493.573, 487.185, 480.838, 474.533, 468.273, 462.059, 455.8~
+## $ y &lt;dbl&gt; 750.000, 749.918, 749.673, 749.267, 748.703, 747.982, 747.106, 746.0~</code></pre>
 <ul>
 <li>s: number of sets;</li>
 <li>v: whether it is for ellipse;</li>
@@ -239,44 +264,44 @@ Besides, the design of <code>ggVennDiagram</code> version 1.0 is inspired by two
 These polygons can’t be generated using simple functions, but are painstaking manual work
 that took years to create. I have communicated with the author of <code>venn</code>, Prof. Adrian Dușa,
 and get his consent to reuse these data.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="methods.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb59-2"><a href="methods.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sets, <span class="fu">aes</span>(x,y)) <span class="sc">+</span> </span>
-<span id="cb59-3"><a href="methods.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">factor</span>(n)),<span class="at">alpha=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> </span>
-<span id="cb59-4"><a href="methods.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(v<span class="sc">~</span>s) <span class="sc">+</span> </span>
-<span id="cb59-5"><a href="methods.html#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb59-6"><a href="methods.html#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb59-7"><a href="methods.html#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="methods.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb64-2"><a href="methods.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sets, <span class="fu">aes</span>(x,y)) <span class="sc">+</span> </span>
+<span id="cb64-3"><a href="methods.html#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">factor</span>(n)),<span class="at">alpha=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb64-4"><a href="methods.html#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(v<span class="sc">~</span>s) <span class="sc">+</span> </span>
+<span id="cb64-5"><a href="methods.html#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb64-6"><a href="methods.html#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb64-7"><a href="methods.html#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-47-1.png" width="90%" /></p>
 <p>In <code>ggVennDiagram</code>, we also store a predefined shapes in <code>sysdata</code>, and this
 will no doubt improve shape generations in user-side.
 You may navigate the shape data with <code>get_shape_data()</code> function.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="methods.html#cb60-1" aria-hidden="true" tabindex="-1"></a>ggVennDiagram<span class="sc">::</span><span class="fu">get_shape_data</span>(<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="methods.html#cb65-1" aria-hidden="true" tabindex="-1"></a>ggVennDiagram<span class="sc">::</span><span class="fu">get_shape_data</span>(<span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 8 x 6
-##   nsets type    shape_id component id    xy                 
-##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;list&gt;             
-## 1     4 ellipse 401f     setEdge   1     &lt;dbl[,2] [101 x 2]&gt;
-## 2     4 ellipse 401f     setEdge   2     &lt;dbl[,2] [101 x 2]&gt;
-## 3     4 ellipse 401f     setEdge   3     &lt;dbl[,2] [101 x 2]&gt;
-## 4     4 ellipse 401f     setEdge   4     &lt;dbl[,2] [101 x 2]&gt;
-## 5     4 ellipse 401f     setLabel  1     &lt;dbl[,2] [1 x 2]&gt;  
-## 6     4 ellipse 401f     setLabel  2     &lt;dbl[,2] [1 x 2]&gt;  
-## 7     4 ellipse 401f     setLabel  3     &lt;dbl[,2] [1 x 2]&gt;  
-## 8     4 ellipse 401f     setLabel  4     &lt;dbl[,2] [1 x 2]&gt;</code></pre>
+##   nsets type    shape_id component id    xy             
+##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;list&gt;         
+## 1     4 ellipse 401f     setEdge   1     &lt;dbl [101 x 2]&gt;
+## 2     4 ellipse 401f     setEdge   2     &lt;dbl [101 x 2]&gt;
+## 3     4 ellipse 401f     setEdge   3     &lt;dbl [101 x 2]&gt;
+## 4     4 ellipse 401f     setEdge   4     &lt;dbl [101 x 2]&gt;
+## 5     4 ellipse 401f     setLabel  1     &lt;dbl [1 x 2]&gt;  
+## 6     4 ellipse 401f     setLabel  2     &lt;dbl [1 x 2]&gt;  
+## 7     4 ellipse 401f     setLabel  3     &lt;dbl [1 x 2]&gt;  
+## 8     4 ellipse 401f     setLabel  4     &lt;dbl [1 x 2]&gt;</code></pre>
 <p>or plot them with <code>plot_shapes()</code>.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="methods.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shapes</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="methods.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shapes</span>() </span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-49-1.png" width="90%" /></p>
 </div>
 <div id="set-operation-in-rvenn" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Set operation in <code>RVenn</code></h2>
 <p><code>RVenn</code> defines a S4 class object <code>Venn</code> to store members of Venn sets.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="methods.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb63-2"><a href="methods.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVenn)</span>
-<span id="cb63-3"><a href="methods.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb63-4"><a href="methods.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(gene_list)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="methods.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb68-2"><a href="methods.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVenn)</span>
+<span id="cb68-3"><a href="methods.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb68-4"><a href="methods.html#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(gene_list)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-50-1.png" width="90%" /></p>
 <p>Construct the Venn object.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="methods.html#cb64-1" aria-hidden="true" tabindex="-1"></a>toy <span class="ot">&lt;-</span> <span class="fu">Venn</span>(gene_list)</span>
-<span id="cb64-2"><a href="methods.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(toy)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="methods.html#cb69-1" aria-hidden="true" tabindex="-1"></a>toy <span class="ot">&lt;-</span> <span class="fu">Venn</span>(gene_list)</span>
+<span id="cb69-2"><a href="methods.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(toy)</span></code></pre></div>
 <pre><code>## Formal class &#39;Venn&#39; [package &quot;RVenn&quot;] with 2 slots
 ##   ..@ sets :List of 4
 ##   .. ..$ A: chr [1:100] &quot;gene284&quot; &quot;gene106&quot; &quot;gene712&quot; &quot;gene905&quot; ...
@@ -291,17 +316,17 @@ of different sets.</p>
 <ul>
 <li><strong>Intersection</strong></li>
 </ul>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="methods.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intersection</span></span>
-<span id="cb66-2"><a href="methods.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="methods.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intersection</span></span>
+<span id="cb71-2"><a href="methods.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy)</span></code></pre></div>
 <pre><code>## [1] &quot;gene757&quot;</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="methods.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy, <span class="at">slice =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="methods.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy, <span class="at">slice =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;gene876&quot; &quot;gene405&quot; &quot;gene361&quot; &quot;gene63&quot;  &quot;gene679&quot; &quot;gene757&quot;</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="methods.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy, <span class="at">slice =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="methods.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">overlap</span>(toy, <span class="at">slice =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;gene876&quot; &quot;gene405&quot; &quot;gene361&quot; &quot;gene63&quot;  &quot;gene679&quot; &quot;gene757&quot;</code></pre>
 <ul>
 <li><strong>Union</strong></li>
 </ul>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="methods.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unite</span>(toy) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="methods.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unite</span>(toy) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
 <pre><code>##   [1] &quot;gene1&quot;   &quot;gene10&quot;  &quot;gene101&quot; &quot;gene102&quot; &quot;gene103&quot; &quot;gene104&quot; &quot;gene105&quot;
 ##   [8] &quot;gene106&quot; &quot;gene107&quot; &quot;gene110&quot; &quot;gene112&quot; &quot;gene114&quot; &quot;gene115&quot; &quot;gene116&quot;
 ##  [15] &quot;gene117&quot; &quot;gene118&quot; &quot;gene120&quot; &quot;gene121&quot; &quot;gene122&quot; &quot;gene125&quot; &quot;gene126&quot;
@@ -321,7 +346,7 @@ of different sets.</p>
 <ul>
 <li><strong>Set difference</strong></li>
 </ul>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="methods.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="methods.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
 <pre><code>##   [1] &quot;gene101&quot; &quot;gene104&quot; &quot;gene106&quot; &quot;gene107&quot; &quot;gene110&quot; &quot;gene112&quot; &quot;gene114&quot;
 ##   [8] &quot;gene115&quot; &quot;gene116&quot; &quot;gene117&quot; &quot;gene118&quot; &quot;gene121&quot; &quot;gene122&quot; &quot;gene126&quot;
 ##  [15] &quot;gene127&quot; &quot;gene133&quot; &quot;gene134&quot; &quot;gene136&quot; &quot;gene138&quot; &quot;gene140&quot; &quot;gene141&quot;
@@ -338,7 +363,7 @@ of different sets.</p>
 ##  [92] &quot;gene298&quot; &quot;gene302&quot; &quot;gene303&quot; &quot;gene304&quot; &quot;gene305&quot; &quot;gene309&quot; &quot;gene31&quot; 
 ##  [99] &quot;gene310&quot; &quot;gene312&quot;
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 301 entries ]</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="methods.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">slice2 =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="methods.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern</span>(toy, <span class="at">slice1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">slice2 =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
 <pre><code>##   [1] &quot;gene101&quot; &quot;gene104&quot; &quot;gene106&quot; &quot;gene112&quot; &quot;gene115&quot; &quot;gene122&quot; &quot;gene133&quot;
 ##   [8] &quot;gene134&quot; &quot;gene136&quot; &quot;gene146&quot; &quot;gene148&quot; &quot;gene161&quot; &quot;gene163&quot; &quot;gene164&quot;
 ##  [15] &quot;gene167&quot; &quot;gene174&quot; &quot;gene176&quot; &quot;gene177&quot; &quot;gene18&quot;  &quot;gene183&quot; &quot;gene188&quot;
@@ -360,9 +385,9 @@ new functions written on its defined Venn object.
 There are totally <span class="math inline">\(2^n–1\)</span> regions in a Venn diagram, in which <span class="math inline">\(n\)</span> is the number of sets.
 We developed <code>discern_overlap()</code> to calculate the members of every Venn regions.
 By default, it will return the intersection of all the sets, which only contains one gene here.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="methods.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern_overlap</span>(toy)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="methods.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern_overlap</span>(toy)</span></code></pre></div>
 <pre><code>## [1] &quot;gene757&quot;</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="methods.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern_overlap</span>(toy, <span class="at">slice =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="methods.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discern_overlap</span>(toy, <span class="at">slice =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;gene712&quot; &quot;gene133&quot; &quot;gene931&quot; &quot;gene213&quot; &quot;gene747&quot; &quot;gene597&quot; &quot;gene268&quot;
 ##  [8] &quot;gene871&quot; &quot;gene197&quot; &quot;gene136&quot;</code></pre>
 <p>We construct a <code>Polygon</code> object that inherits <code>Venn</code> to store shape data.
@@ -404,7 +429,6 @@ By doing this, a complete <code>VennPlotData</code> object is finished and can b
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -423,6 +447,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -443,6 +468,10 @@ gitbook.start({
 "text": null
 },
 "download": ["ggVennDiagramPaper"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

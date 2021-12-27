@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Venn Diagram cookbook in R</title>
+  <title>Page not found | Venn Diagram cookbook in R</title>
   <meta name="description" content="How to draw Venn diagram with R packages." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Venn Diagram cookbook in R" />
+  <meta property="og:title" content="Page not found | Venn Diagram cookbook in R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Venn Diagram cookbook in R" />
+  <meta name="twitter:title" content="Page not found | Venn Diagram cookbook in R" />
   
   <meta name="twitter:description" content="How to draw Venn diagram with R packages." />
   
@@ -32,7 +32,7 @@
   
   
 
-<link rel="next" href="intro.html"/>
+
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -235,84 +235,11 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Venn Diagram cookbook in R</h1>
-<p class="author"><em>Chun-Hui Gao</em></p>
-<p class="date"><em>2021-12-27</em></p>
-</div>
-<div id="preface" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Preface</h1>
-<p>In this online book, I would like to compare the usage of several Venn Diagram
-tool in R environment. It is the investigation of these existing tools prompted
-me to develop a new tool <code>ggVennDiagram</code>.</p>
-<div id="prerequisites" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Prerequisites</h2>
-<p>List of packages</p>
-<ul>
-<li><code>VennDiagram</code></li>
-<li><code>colorfulVennPlot</code></li>
-<li><code>venn</code></li>
-<li><code>nVennR</code></li>
-<li><code>eulerr</code></li>
-<li><code>venneuler</code></li>
-<li><code>gplots</code></li>
-<li><code>ggVennDiagram</code></li>
-<li><code>ggvenn</code></li>
-</ul>
-<p>You need to install these packages.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a>cran_packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;VennDiagram&quot;</span>,<span class="st">&quot;colorfulVennPlot&quot;</span>,<span class="st">&quot;gplots&quot;</span>,<span class="st">&quot;venn&quot;</span>,</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;nVennR&quot;</span>, <span class="st">&quot;eulerr&quot;</span>,<span class="st">&quot;venneuler&quot;</span>,<span class="st">&quot;ggVennDiagram&quot;</span>)</span>
-<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a>xfun<span class="sc">::</span><span class="fu">pkg_load2</span>(cran_packages)</span>
-<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="index.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># GitHub</span></span>
-<span id="cb1-6"><a href="index.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;ggvenn&quot;</span>)){</span>
-<span id="cb1-7"><a href="index.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;yanlinlin82/ggvenn&quot;</span>)</span>
-<span id="cb1-8"><a href="index.html#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-</div>
-<div id="sessioninfo" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Sessioninfo</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.1.0 (2021-05-18)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 22000)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=Chinese (Simplified)_China.936 
-## [2] LC_CTYPE=Chinese (Simplified)_China.936   
-## [3] LC_MONETARY=Chinese (Simplified)_China.936
-## [4] LC_NUMERIC=C                              
-## [5] LC_TIME=Chinese (Simplified)_China.936    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## loaded via a namespace (and not attached):
-##  [1] gtools_3.9.2         tidyselect_1.1.1     xfun_0.27           
-##  [4] venneuler_1.1-0      bslib_0.3.1          purrr_0.3.4         
-##  [7] rJava_1.0-5          generics_0.1.1       colorspace_2.0-2    
-## [10] vctrs_0.3.8          htmltools_0.5.2      yaml_2.2.1          
-## [13] utf8_1.2.2           rlang_0.4.12         jquerylib_0.1.4     
-## [16] pillar_1.6.4         DBI_1.1.1            RVenn_1.1.0         
-## [19] glue_1.5.0           lambda.r_1.2.4       lifecycle_1.0.1     
-## [22] stringr_1.4.0        munsell_0.5.0        gtable_0.3.0        
-## [25] futile.logger_1.4.3  caTools_1.18.2       evaluate_0.14       
-## [28] knitr_1.36           fastmap_1.1.0        fansi_0.5.0         
-## [31] colorfulVennPlot_2.4 Rcpp_1.0.7           KernSmooth_2.23-20  
-## [34] admisc_0.19          ggVennDiagram_1.2.0  scales_1.1.1        
-## [37] formatR_1.11         jsonlite_1.7.2       gplots_3.1.1        
-## [40] ggplot2_3.3.5        digest_0.6.28        stringi_1.7.5       
-## [43] bookdown_0.24        dplyr_1.0.7          grid_4.1.0          
-## [46] nVennR_0.2.3         ggvenn_0.1.9         tools_4.1.0         
-## [49] bitops_1.0-7         magrittr_2.0.1       eulerr_6.1.1        
-## [52] sass_0.4.0           tibble_3.1.5         futile.options_1.0.1
-## [55] venn_1.10            crayon_1.4.1         pkgconfig_2.0.3     
-## [58] ellipsis_0.3.2       assertthat_0.2.1     rmarkdown_2.11      
-## [61] rstudioapi_0.13      R6_2.5.1             VennDiagram_1.6.20  
-## [64] compiler_4.1.0</code></pre>
-
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
 <div id="disqus_thread"></div>
 <script>
@@ -339,7 +266,7 @@ me to develop a new tool <code>ggVennDiagram</code>.</p>
         </div>
       </div>
 
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

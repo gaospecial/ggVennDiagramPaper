@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Introduction | Venn Diagram cookbook in R</title>
   <meta name="description" content="How to draw Venn diagram with R packages." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Introduction | Venn Diagram cookbook in R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Chun-Hui Gao" />
 
 
-<meta name="date" content="2021-05-11" />
+<meta name="date" content="2021-12-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="using-ggVennDiagram.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,14 +51,15 @@
 
 
 
-
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -122,6 +124,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -220,36 +245,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-5"><a href="intro.html#cb4-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">C =</span> <span class="fu">sample</span>(genes,<span class="dv">300</span>),</span>
 <span id="cb4-6"><a href="intro.html#cb4-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">D =</span> <span class="fu">sample</span>(genes,<span class="dv">200</span>))</span>
 <span id="cb4-7"><a href="intro.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.5</code></pre>
 <div id="venndiagram" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> <code>VennDiagram</code></h2>
-<p><code>VennDiagram</code> <span class="citation">(<a href="references.html#ref-R-VennDiagram" role="doc-biblioref">Chen 2018</a>)</span> is currently the most popular Venn plot tool in R environment.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span>
-<span id="cb6-2"><a href="intro.html#cb6-2" aria-hidden="true" tabindex="-1"></a>VennDiagram <span class="ot">&lt;-</span> <span class="fu">venn.diagram</span>(<span class="at">x =</span> gene_list, <span class="at">filename =</span> <span class="cn">NULL</span>)</span>
-<span id="cb6-3"><a href="intro.html#cb6-3" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(VennDiagram)</span></code></pre></div>
+<p><code>VennDiagram</code> <span class="citation">(<a href="#ref-R-VennDiagram" role="doc-biblioref">Chen 2018</a>)</span> is currently the most popular Venn plot tool in R environment.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span>
+<span id="cb5-2"><a href="intro.html#cb5-2" aria-hidden="true" tabindex="-1"></a>VennDiagram <span class="ot">&lt;-</span> <span class="fu">venn.diagram</span>(<span class="at">x =</span> gene_list, <span class="at">filename =</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-3"><a href="intro.html#cb5-3" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(VennDiagram)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-5-1.png" width="90%" /></p>
 <p>It provide basic functions to draw Euler plot.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" aria-hidden="true" tabindex="-1"></a>venn.plot <span class="ot">&lt;-</span> <span class="fu">draw.triple.venn</span>(</span>
-<span id="cb7-2"><a href="intro.html#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">area1 =</span> <span class="dv">65</span>,</span>
-<span id="cb7-3"><a href="intro.html#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">area2 =</span> <span class="dv">75</span>,</span>
-<span id="cb7-4"><a href="intro.html#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">area3 =</span> <span class="dv">85</span>,</span>
-<span id="cb7-5"><a href="intro.html#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n12 =</span> <span class="dv">35</span>,</span>
-<span id="cb7-6"><a href="intro.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n23 =</span> <span class="dv">15</span>,</span>
-<span id="cb7-7"><a href="intro.html#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n13 =</span> <span class="dv">25</span>,</span>
-<span id="cb7-8"><a href="intro.html#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n123 =</span> <span class="dv">5</span>,</span>
-<span id="cb7-9"><a href="intro.html#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;First&quot;</span>, <span class="st">&quot;Second&quot;</span>, <span class="st">&quot;Third&quot;</span>),</span>
-<span id="cb7-10"><a href="intro.html#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
-<span id="cb7-11"><a href="intro.html#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="st">&quot;blank&quot;</span>,</span>
-<span id="cb7-12"><a href="intro.html#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">cex =</span> <span class="dv">2</span>,</span>
-<span id="cb7-13"><a href="intro.html#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cat.cex =</span> <span class="dv">2</span>,</span>
-<span id="cb7-14"><a href="intro.html#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">cat.col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
-<span id="cb7-15"><a href="intro.html#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">euler.d =</span> <span class="cn">TRUE</span></span>
-<span id="cb7-16"><a href="intro.html#cb7-16" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true" tabindex="-1"></a>venn.plot <span class="ot">&lt;-</span> <span class="fu">draw.triple.venn</span>(</span>
+<span id="cb6-2"><a href="intro.html#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">area1 =</span> <span class="dv">65</span>,</span>
+<span id="cb6-3"><a href="intro.html#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">area2 =</span> <span class="dv">75</span>,</span>
+<span id="cb6-4"><a href="intro.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">area3 =</span> <span class="dv">85</span>,</span>
+<span id="cb6-5"><a href="intro.html#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n12 =</span> <span class="dv">35</span>,</span>
+<span id="cb6-6"><a href="intro.html#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n23 =</span> <span class="dv">15</span>,</span>
+<span id="cb6-7"><a href="intro.html#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n13 =</span> <span class="dv">25</span>,</span>
+<span id="cb6-8"><a href="intro.html#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n123 =</span> <span class="dv">5</span>,</span>
+<span id="cb6-9"><a href="intro.html#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;First&quot;</span>, <span class="st">&quot;Second&quot;</span>, <span class="st">&quot;Third&quot;</span>),</span>
+<span id="cb6-10"><a href="intro.html#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb6-11"><a href="intro.html#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="st">&quot;blank&quot;</span>,</span>
+<span id="cb6-12"><a href="intro.html#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">cex =</span> <span class="dv">2</span>,</span>
+<span id="cb6-13"><a href="intro.html#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cat.cex =</span> <span class="dv">2</span>,</span>
+<span id="cb6-14"><a href="intro.html#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">cat.col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb6-15"><a href="intro.html#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">euler.d =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-16"><a href="intro.html#cb6-16" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-6-1.png" width="90%" /></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(venn.plot)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(venn.plot)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-6-2.png" width="90%" /></p>
 <p>helper function to get Venn partitions.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get.venn.partitions</span>(gene_list) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get.venn.partitions</span>(gene_list) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">as_tibble</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 7
 ##    A     B     C     D     ..set..     ..values..   ..count..
 ##    &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;chr&gt;       &lt;named list&gt;     &lt;int&gt;
@@ -271,57 +295,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="colorfulvennplot" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> <code>colorfulVennPlot</code></h2>
-<p><span class="citation">(<a href="references.html#ref-R-colorfulVennPlot" role="doc-biblioref">Noma and Manvae 2013</a>)</span></p>
+<p><span class="citation">(<a href="#ref-R-colorfulVennPlot" role="doc-biblioref">Noma and Manvae 2013</a>)</span></p>
 <p>This package can specify the filled color for each region, but the first required parameter is a numeric vector of length 15, with specific names in suitable order, which makes it is very complicated to setup and use.</p>
 <p>Besides, the filled color need to be specified one by one, which is very complicated as well.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorfulVennPlot)</span>
-<span id="cb11-2"><a href="intro.html#cb11-2" aria-hidden="true" tabindex="-1"></a>Colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;yellow&#39;</span>, <span class="st">&#39;green&#39;</span>, <span class="st">&#39;pink&#39;</span>, <span class="st">&#39;darkgreen&#39;</span>,<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;lightblue&#39;</span>,<span class="st">&#39;tan&#39;</span>, </span>
-<span id="cb11-3"><a href="intro.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;yellowgreen&#39;</span>,<span class="st">&#39;orange&#39;</span>,<span class="st">&#39;purple&#39;</span>,<span class="st">&#39;white&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;plum&#39;</span>,<span class="st">&#39;brown&#39;</span>)</span>
-<span id="cb11-4"><a href="intro.html#cb11-4" aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">15</span>)</span>
-<span id="cb11-5"><a href="intro.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(regions) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;1000&#39;</span>, <span class="st">&#39;0100&#39;</span>, <span class="st">&#39;1100&#39;</span>, <span class="st">&#39;0010&#39;</span>, <span class="st">&#39;1010&#39;</span>, <span class="st">&#39;0110&#39;</span>, <span class="st">&#39;1110&#39;</span>, <span class="st">&#39;0001&#39;</span>, </span>
-<span id="cb11-6"><a href="intro.html#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;1001&#39;</span>, <span class="st">&#39;0101&#39;</span>, <span class="st">&#39;1101&#39;</span>, <span class="st">&#39;0011&#39;</span>, <span class="st">&#39;1011&#39;</span>, <span class="st">&#39;0111&#39;</span>, <span class="st">&#39;1111&#39;</span>)</span>
-<span id="cb11-7"><a href="intro.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotVenn4d</span>(regions, <span class="at">Colors=</span>Colors)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorfulVennPlot)</span>
+<span id="cb10-2"><a href="intro.html#cb10-2" aria-hidden="true" tabindex="-1"></a>Colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;yellow&#39;</span>, <span class="st">&#39;green&#39;</span>, <span class="st">&#39;pink&#39;</span>, <span class="st">&#39;darkgreen&#39;</span>,<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;lightblue&#39;</span>,<span class="st">&#39;tan&#39;</span>, </span>
+<span id="cb10-3"><a href="intro.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;yellowgreen&#39;</span>,<span class="st">&#39;orange&#39;</span>,<span class="st">&#39;purple&#39;</span>,<span class="st">&#39;white&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;plum&#39;</span>,<span class="st">&#39;brown&#39;</span>)</span>
+<span id="cb10-4"><a href="intro.html#cb10-4" aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">15</span>)</span>
+<span id="cb10-5"><a href="intro.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(regions) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;1000&#39;</span>, <span class="st">&#39;0100&#39;</span>, <span class="st">&#39;1100&#39;</span>, <span class="st">&#39;0010&#39;</span>, <span class="st">&#39;1010&#39;</span>, <span class="st">&#39;0110&#39;</span>, <span class="st">&#39;1110&#39;</span>, <span class="st">&#39;0001&#39;</span>, </span>
+<span id="cb10-6"><a href="intro.html#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;1001&#39;</span>, <span class="st">&#39;0101&#39;</span>, <span class="st">&#39;1101&#39;</span>, <span class="st">&#39;0011&#39;</span>, <span class="st">&#39;1011&#39;</span>, <span class="st">&#39;0111&#39;</span>, <span class="st">&#39;1111&#39;</span>)</span>
+<span id="cb10-7"><a href="intro.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotVenn4d</span>(regions, <span class="at">Colors=</span>Colors)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-9-1.png" width="90%" /></p>
 </div>
 <div id="venn" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> <code>venn</code></h2>
-<p><span class="citation">(<a href="references.html#ref-R-venn" role="doc-biblioref">Dusa 2020</a>)</span></p>
+<p><span class="citation">(<a href="#ref-R-venn" role="doc-biblioref">Dusa 2021</a>)</span></p>
 <p>Using <code>venn</code> is very simple.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(venn)</span>
-<span id="cb12-2"><a href="intro.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(gene_list)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(venn)</span>
+<span id="cb11-2"><a href="intro.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(gene_list)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-10-1.png" width="90%" /></p>
 <p><code>venn</code> also support different shapes.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="at">x =</span> gene_list, <span class="at">ellipse =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="at">x =</span> gene_list, <span class="at">ellipse =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-11-1.png" width="90%" /></p>
 <p><code>venn</code> support <code>ggplot</code>, but it depends on <code>ggpolypath</code>, which is not popular.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intro.html#cb14-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(gene_list, <span class="at">ellipse =</span> <span class="cn">TRUE</span>, <span class="at">ggplot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(gene_list, <span class="at">ellipse =</span> <span class="cn">TRUE</span>, <span class="at">ggplot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-12-1.png" width="90%" /></p>
 <p><code>venn</code> plots Venn diagram up to 7 sets.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intro.html#cb14-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(<span class="dv">5</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-13-1.png" width="90%" /></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(<span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(<span class="dv">6</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-14-1.png" width="90%" /></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(<span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1" aria-hidden="true" tabindex="-1"></a>venn<span class="sc">::</span><span class="fu">venn</span>(<span class="dv">7</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-15-1.png" width="90%" /></p>
 <p><code>venn</code> accepts multiple format of input.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1" aria-hidden="true" tabindex="-1"></a>intersections <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;~A~B~C~D&#39;</span>, <span class="st">&#39;~A~B~CD&#39;</span>, <span class="st">&#39;~A~BC~D&#39;</span>, <span class="st">&#39;~A~BCD&#39;</span>, <span class="st">&#39;~AB~C~D&#39;</span>, <span class="st">&#39;~AB~CD&#39;</span>, <span class="st">&#39;~ABC~D&#39;</span>, <span class="st">&#39;~ABCD&#39;</span>, <span class="st">&#39;A~B~C~D&#39;</span>, <span class="st">&#39;A~B~CD&#39;</span>, <span class="st">&#39;A~BC~D&#39;</span>, <span class="st">&#39;A~BCD&#39;</span>, <span class="st">&#39;AB~C~D&#39;</span>, <span class="st">&#39;AB~CD&#39;</span>, <span class="st">&#39;ABC~D&#39;</span>, <span class="st">&#39;ABCD&#39;</span>)</span>
-<span id="cb18-2"><a href="intro.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(intersections, <span class="at">zcol =</span> <span class="fu">colors</span>()[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">657</span>, <span class="dv">16</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1" aria-hidden="true" tabindex="-1"></a>intersections <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;~A~B~C~D&#39;</span>, <span class="st">&#39;~A~B~CD&#39;</span>, <span class="st">&#39;~A~BC~D&#39;</span>, <span class="st">&#39;~A~BCD&#39;</span>, <span class="st">&#39;~AB~C~D&#39;</span>, <span class="st">&#39;~AB~CD&#39;</span>, <span class="st">&#39;~ABC~D&#39;</span>, <span class="st">&#39;~ABCD&#39;</span>, <span class="st">&#39;A~B~C~D&#39;</span>, <span class="st">&#39;A~B~CD&#39;</span>, <span class="st">&#39;A~BC~D&#39;</span>, <span class="st">&#39;A~BCD&#39;</span>, <span class="st">&#39;AB~C~D&#39;</span>, <span class="st">&#39;AB~CD&#39;</span>, <span class="st">&#39;ABC~D&#39;</span>, <span class="st">&#39;ABCD&#39;</span>)</span>
+<span id="cb17-2"><a href="intro.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(intersections, <span class="at">zcol =</span> <span class="fu">colors</span>()[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">657</span>, <span class="dv">16</span>)])</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-16-1.png" width="90%" /></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="st">&quot;A*D, A*B*~C + B*C*~D&quot;</span>, <span class="at">zcol =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="st">&quot;A*D, A*B*~C + B*C*~D&quot;</span>, <span class="at">zcol =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-16-2.png" width="90%" /></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="st">&quot;AD, AB~C + BC~D&quot;</span>, <span class="at">zcol =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span>
-<span id="cb20-2"><a href="intro.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="intro.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="st">&quot;1-----&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="st">&quot;AD, AB~C + BC~D&quot;</span>, <span class="at">zcol =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span>
+<span id="cb19-2"><a href="intro.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="intro.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="st">&quot;1-----&quot;</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-16-3.png" width="90%" /></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="st">&quot;100 + 110 + 101 + 111&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="st">&quot;100 + 110 + 101 + 111&quot;</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-16-4.png" width="90%" /></p>
 </div>
 <div id="nvennr" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> <code>nVennR</code></h2>
-<p><code>nVennR</code> provides an interface for the <code>nVenn</code> algorithm <span class="citation">(<a href="references.html#ref-perez-silvaNVennGeneralizedQuasiproportional2018" role="doc-biblioref">Pérez-Silva, Araujo-Voces, and Quesada 2018</a>)</span>. This algorithm works for any number of sets, and usually yields pleasing and informative Venn diagrams with proportionality information.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nVennR)</span>
-<span id="cb22-2"><a href="intro.html#cb22-2" aria-hidden="true" tabindex="-1"></a>myNV <span class="ot">&lt;-</span> <span class="fu">plotVenn</span>(gene_list)</span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="intro.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(myNV<span class="sc">$</span>svg)</span></code></pre></div>
+<p><code>nVennR</code> provides an interface for the <code>nVenn</code> algorithm <span class="citation">(<a href="#ref-perez-silvaNVennGeneralizedQuasiproportional2018" role="doc-biblioref">Pérez-Silva, Araujo-Voces, and Quesada 2018</a>)</span>. This algorithm works for any number of sets, and usually yields pleasing and informative Venn diagrams with proportionality information.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nVennR)</span>
+<span id="cb21-2"><a href="intro.html#cb21-2" aria-hidden="true" tabindex="-1"></a>myNV <span class="ot">&lt;-</span> <span class="fu">plotVenn</span>(gene_list)</span></code></pre></div>
+<p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-17-1.png" width="90%" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(myNV<span class="sc">$</span>svg)</span></code></pre></div>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="700" height="500">
 <defs>
 <style type="text/css"><![CDATA[
@@ -480,30 +505,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="eulerr" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> <code>eulerr</code></h2>
-<p><span class="citation">(<a href="references.html#ref-R-eulerr" role="doc-biblioref">Larsson 2020</a>)</span></p>
+<p><span class="citation">(<a href="#ref-R-eulerr" role="doc-biblioref">Larsson 2021</a>)</span></p>
 <p><code>eulerr</code> generates area-proportional euler diagrams that display set relationships (intersections, unions, and disjoints) with circles or ellipses.</p>
 <p>Unlike Venn diagrams, which show all possible relations between different sets, the Euler diagram shows only relevant relationships.</p>
 <p>Venn diagrams are a more restrictive form of Euler diagrams. A Venn diagram must contain all <span class="math inline">\(2^n\)</span> logically possible zones of overlap between its <span class="math inline">\(n\)</span> curves, representing all combinations of inclusion/exclusion of its constituent sets.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(eulerr)</span>
-<span id="cb24-2"><a href="intro.html#cb24-2" aria-hidden="true" tabindex="-1"></a>venn_plot <span class="ot">&lt;-</span> <span class="fu">venn</span>(gene_list)</span>
-<span id="cb24-3"><a href="intro.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(venn_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="intro.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(eulerr)</span></code></pre></div>
+<pre><code>## Warning: package &#39;eulerr&#39; was built under R version 4.1.1</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="intro.html#cb25-1" aria-hidden="true" tabindex="-1"></a>venn_plot <span class="ot">&lt;-</span> <span class="fu">venn</span>(gene_list)</span>
+<span id="cb25-2"><a href="intro.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(venn_plot)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-19-1.png" width="90%" /></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="intro.html#cb25-1" aria-hidden="true" tabindex="-1"></a>euler_plot <span class="ot">&lt;-</span> <span class="fu">euler</span>(gene_list)</span>
-<span id="cb25-2"><a href="intro.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(euler_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1" aria-hidden="true" tabindex="-1"></a>euler_plot <span class="ot">&lt;-</span> <span class="fu">euler</span>(gene_list)</span>
+<span id="cb26-2"><a href="intro.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(euler_plot)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-20-1.png" width="90%" /></p>
 <p>At the time of March 9th, 2021, it is possible to provide input to eulerr as either</p>
 <p>a named numeric vector with set combinations as disjoint set combinations or unions (depending on how the argument type is set in euler()),
 a matrix or data frame of logicals with columns representing sets and rows the set relationships for each observation,
 a list of sample spaces, or
 a table.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input as a matrix of logicals</span></span>
-<span id="cb26-2"><a href="intro.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb26-3"><a href="intro.html#cb26-3" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
-<span id="cb26-4"><a href="intro.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="dv">50</span>, <span class="cn">TRUE</span>),</span>
-<span id="cb26-5"><a href="intro.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">B =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="dv">50</span>, <span class="cn">TRUE</span>),</span>
-<span id="cb26-6"><a href="intro.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">C =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>), <span class="dv">50</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb26-7"><a href="intro.html#cb26-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-8"><a href="intro.html#cb26-8" aria-hidden="true" tabindex="-1"></a>(fit2 <span class="ot">&lt;-</span> <span class="fu">euler</span>(mat))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="intro.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input as a matrix of logicals</span></span>
+<span id="cb27-2"><a href="intro.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb27-3"><a href="intro.html#cb27-3" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb27-4"><a href="intro.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="dv">50</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb27-5"><a href="intro.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">B =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="dv">50</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb27-6"><a href="intro.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">C =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>), <span class="dv">50</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb27-7"><a href="intro.html#cb27-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-8"><a href="intro.html#cb27-8" aria-hidden="true" tabindex="-1"></a>(fit2 <span class="ot">&lt;-</span> <span class="fu">euler</span>(mat))</span></code></pre></div>
 <pre><code>##       original fitted residuals regionError
 ## A           13     13         0       0.008
 ## B            4      4         0       0.002
@@ -516,60 +542,95 @@ a table.</p>
 ## diagError: 0.024 
 ## stress:    0.002</code></pre>
 <p>The diagnose function is good.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">error_plot</span>(fit2)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="intro.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">error_plot</span>(fit2)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-22-1.png" width="90%" /></p>
 </div>
 <div id="venneuler" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> <code>venneuler</code></h2>
-<p><span class="citation">(<a href="references.html#ref-R-venneuler" role="doc-biblioref">Wilkinson 2011</a>)</span></p>
+<p><span class="citation">(<a href="#ref-R-venneuler" role="doc-biblioref">Wilkinson 2011</a>)</span></p>
 <p><code>venneulerr</code> depends on JAVA runtime environment, which makes its installation is unbearable for non-JAVA users.</p>
 <p>Besides, it only has one exported function, which doesn’t support list input.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="intro.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(venneuler)</span>
-<span id="cb29-2"><a href="intro.html#cb29-2" aria-hidden="true" tabindex="-1"></a>combinations <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">A=</span><span class="fl">0.3</span>, <span class="at">B=</span><span class="fl">0.3</span>, <span class="at">C=</span><span class="fl">1.1</span>, <span class="st">&quot;A&amp;B&quot;</span><span class="ot">=</span><span class="fl">0.1</span>, <span class="st">&quot;A&amp;C&quot;</span><span class="ot">=</span><span class="fl">0.2</span>, <span class="st">&quot;B&amp;C&quot;</span><span class="ot">=</span><span class="fl">0.1</span> ,<span class="st">&quot;A&amp;B&amp;C&quot;</span><span class="ot">=</span><span class="fl">0.1</span>)</span>
-<span id="cb29-3"><a href="intro.html#cb29-3" aria-hidden="true" tabindex="-1"></a>vd <span class="ot">&lt;-</span> <span class="fu">venneuler</span>(combinations)</span>
-<span id="cb29-4"><a href="intro.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vd)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(venneuler)</span></code></pre></div>
+<pre><code>## Warning: package &#39;rJava&#39; was built under R version 4.1.1</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1" aria-hidden="true" tabindex="-1"></a>combinations <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">A=</span><span class="fl">0.3</span>, <span class="at">B=</span><span class="fl">0.3</span>, <span class="at">C=</span><span class="fl">1.1</span>, <span class="st">&quot;A&amp;B&quot;</span><span class="ot">=</span><span class="fl">0.1</span>, <span class="st">&quot;A&amp;C&quot;</span><span class="ot">=</span><span class="fl">0.2</span>, <span class="st">&quot;B&amp;C&quot;</span><span class="ot">=</span><span class="fl">0.1</span> ,<span class="st">&quot;A&amp;B&amp;C&quot;</span><span class="ot">=</span><span class="fl">0.1</span>,<span class="st">&quot;D&quot;</span><span class="ot">=</span><span class="fl">0.2</span>,<span class="st">&quot;C&amp;D&quot;</span><span class="ot">=</span><span class="fl">0.1</span>)</span>
+<span id="cb32-2"><a href="intro.html#cb32-2" aria-hidden="true" tabindex="-1"></a>vd <span class="ot">&lt;-</span> <span class="fu">venneuler</span>(combinations)</span>
+<span id="cb32-3"><a href="intro.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vd)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-23-1.png" width="90%" /></p>
 </div>
 <div id="rvenn" class="section level2" number="2.7">
 <h2><span class="header-section-number">2.7</span> <code>RVenn</code></h2>
-<p><span class="citation">(<a href="references.html#ref-R-RVenn" role="doc-biblioref">Akyol 2019</a>)</span></p>
+<p><span class="citation">(<a href="#ref-R-RVenn" role="doc-biblioref">Akyol 2019</a>)</span></p>
 <p><code>RVenn</code> is a package for dealing with multiple sets, while the base R functions (<code>intersect</code>, <code>union</code> and <code>setdiff</code>) only work with two sets.</p>
 <p>The functions overlap, unite and discern abstract away the details, so one can just construct the universe and choose the sets to operate by index or set name.</p>
 <p><code>RVenn</code> provide a <code>ggvenn()</code> function to draw 2-3 sets Venn diagram. In this case,
 its advantages are mostly rely on set operation functions.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVenn)</span>
-<span id="cb30-2"><a href="intro.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(<span class="fu">Venn</span>(gene_list[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intro.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RVenn)</span>
+<span id="cb33-2"><a href="intro.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(<span class="fu">Venn</span>(gene_list[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]))</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-24-1.png" width="90%" /></p>
 </div>
 <div id="gplots" class="section level2" number="2.8">
 <h2><span class="header-section-number">2.8</span> <code>gplots</code></h2>
-<p><span class="citation">(<a href="references.html#ref-R-gplots" role="doc-biblioref">Warnes et al. 2020</a>)</span></p>
+<p><span class="citation">(<a href="#ref-R-gplots" role="doc-biblioref">Warnes et al. 2020</a>)</span></p>
 <p><code>gplots</code> provides various R programming tools for plotting data. It supports Venn plot up to five sets.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="intro.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
-<span id="cb31-2"><a href="intro.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(gene_list)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb34-2"><a href="intro.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(gene_list)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-25-1.png" width="90%" /></p>
 </div>
 <div id="ggvenndiagram" class="section level2" number="2.9">
 <h2><span class="header-section-number">2.9</span> <code>ggVennDiagram</code></h2>
-<p><span class="citation">(<a href="references.html#ref-R-ggVennDiagram" role="doc-biblioref">Gao 2021</a>)</span></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggVennDiagram)</span>
-<span id="cb32-2"><a href="intro.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(gene_list)</span></code></pre></div>
+<p><span class="citation">(<a href="#ref-R-ggVennDiagram" role="doc-biblioref">Gao 2021</a>)</span></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intro.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggVennDiagram)</span></code></pre></div>
+<pre><code>## Warning: package &#39;ggVennDiagram&#39; was built under R version 4.1.1</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intro.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(gene_list)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-26-1.png" width="90%" /></p>
 </div>
 <div id="ggvenn" class="section level2" number="2.10">
 <h2><span class="header-section-number">2.10</span> <code>ggvenn</code></h2>
-<p><span class="citation">(<a href="references.html#ref-R-ggvenn" role="doc-biblioref">Yan 2021</a>)</span></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intro.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggvenn)</span>
-<span id="cb33-2"><a href="intro.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(gene_list)</span></code></pre></div>
+<p><span class="citation">(<a href="#ref-R-ggvenn" role="doc-biblioref">Yan 2021</a>)</span></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intro.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggvenn)</span>
+<span id="cb38-2"><a href="intro.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(gene_list)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-27-1.png" width="90%" />
 <code>ggvenn</code> can show elements in polygon regions.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;peach&quot;</span>),</span>
-<span id="cb34-2"><a href="intro.html#cb34-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">B =</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;lemon&quot;</span>))</span>
-<span id="cb34-3"><a href="intro.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(a, <span class="at">show_elements =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="intro.html#cb39-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;peach&quot;</span>),</span>
+<span id="cb39-2"><a href="intro.html#cb39-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">B =</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;lemon&quot;</span>))</span>
+<span id="cb39-3"><a href="intro.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(a, <span class="at">show_elements =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-28-1.png" width="90%" /></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intro.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(a, <span class="at">show_elements =</span> <span class="cn">TRUE</span>, <span class="at">label_sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)  <span class="co"># show elements in line</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intro.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggvenn</span>(a, <span class="at">show_elements =</span> <span class="cn">TRUE</span>, <span class="at">label_sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)  <span class="co"># show elements in line</span></span></code></pre></div>
 <p><img src="ggVennDiagramPaper_files/figure-html/unnamed-chunk-28-2.png" width="90%" /></p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-R-RVenn" class="csl-entry">
+Akyol, Turgut Yigit. 2019. <em>RVenn: Set Operations for Many Sets</em>. <a href="https://CRAN.R-project.org/package=RVenn">https://CRAN.R-project.org/package=RVenn</a>.
+</div>
+<div id="ref-R-VennDiagram" class="csl-entry">
+Chen, Hanbo. 2018. <em>VennDiagram: Generate High-Resolution Venn and Euler Plots</em>. <a href="https://CRAN.R-project.org/package=VennDiagram">https://CRAN.R-project.org/package=VennDiagram</a>.
+</div>
+<div id="ref-R-venn" class="csl-entry">
+Dusa, Adrian. 2021. <em>Venn: Draw Venn Diagrams</em>. <a href="https://github.com/dusadrian/venn">https://github.com/dusadrian/venn</a>.
+</div>
+<div id="ref-R-ggVennDiagram" class="csl-entry">
+Gao, Chun-Hui. 2021. <em>ggVennDiagram: A Ggplot2 Implement of Venn Diagram</em>. <a href="https://github.com/gaospecial/ggVennDiagram">https://github.com/gaospecial/ggVennDiagram</a>.
+</div>
+<div id="ref-R-eulerr" class="csl-entry">
+Larsson, Johan. 2021. <em>Eulerr: Area-Proportional Euler and Venn Diagrams with Ellipses</em>. <a href="https://CRAN.R-project.org/package=eulerr">https://CRAN.R-project.org/package=eulerr</a>.
+</div>
+<div id="ref-R-colorfulVennPlot" class="csl-entry">
+Noma, Elliot, and Aliona Manvae. 2013. <em>colorfulVennPlot: Plot and Add Custom Coloring to Venn Diagrams for 2-Dimensional, 3-Dimensional and 4-Dimensional Data.</em> <a href="https://CRAN.R-project.org/package=colorfulVennPlot">https://CRAN.R-project.org/package=colorfulVennPlot</a>.
+</div>
+<div id="ref-perez-silvaNVennGeneralizedQuasiproportional2018" class="csl-entry">
+Pérez-Silva, José G., Miguel Araujo-Voces, and Víctor Quesada. 2018. <span>“<span class="nocase">nVenn</span>: Generalized, Quasi-Proportional <span>Venn</span> and <span>Euler</span> Diagrams.”</span> <em>Bioinformatics (Oxford, England)</em> 34 (13): 2322–24. <a href="https://doi.org/10.1093/bioinformatics/bty109">https://doi.org/10.1093/bioinformatics/bty109</a>.
+</div>
+<div id="ref-R-gplots" class="csl-entry">
+Warnes, Gregory R., Ben Bolker, Lodewijk Bonebakker, Robert Gentleman, Wolfgang Huber, Andy Liaw, Thomas Lumley, et al. 2020. <em>Gplots: Various r Programming Tools for Plotting Data</em>. <a href="https://github.com/talgalili/gplots">https://github.com/talgalili/gplots</a>.
+</div>
+<div id="ref-R-venneuler" class="csl-entry">
+Wilkinson, Lee. 2011. <em>Venneuler: Venn and Euler Diagrams</em>. <a href="https://CRAN.R-project.org/package=venneuler">https://CRAN.R-project.org/package=venneuler</a>.
+</div>
+<div id="ref-R-ggvenn" class="csl-entry">
+Yan, Linlin. 2021. <em>Ggvenn: Draw Venn Diagram by Ggplot2</em>. <a href="https://CRAN.R-project.org/package=ggvenn">https://CRAN.R-project.org/package=ggvenn</a>.
 </div>
 </div>
 <div id="disqus_thread"></div>
@@ -601,7 +662,6 @@ its advantages are mostly rely on set operation functions.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -620,6 +680,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -640,6 +701,10 @@ gitbook.start({
 "text": null
 },
 "download": ["ggVennDiagramPaper"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
